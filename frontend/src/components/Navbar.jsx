@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="w-full flex justify-between py-3 px-5 bg-appNavyBlue">
       <Logo />
-      <div className="flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-4">
         <Link className="text-white">Create Event</Link>
         <Link className="text-white">Login</Link>
         <Link to="">

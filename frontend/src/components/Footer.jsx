@@ -75,7 +75,7 @@ const linksArray = [
 const Footer = () => {
   return (
     <div className="bg-appNavyBlue text-white py-12">
-      <div className="inner flex justify-between">
+      <div className="inner grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {linksArray.map((linkSet, index) => (
           <FooterLinksSet
             key={index}

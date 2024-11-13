@@ -10,6 +10,12 @@ import heroImg9 from "/img/hero-slide/pexels-teddy-2263436.jpg";
 import heroImg10 from "/img/hero-slide/pexels-tima-miroshnichenko-7991579.jpg";
 import recommendationBg from "/img/recommendations-bg.svg";
 import ctaBg from "/img/cta-bg.png";
+import party from "/img/party.jpeg";
+import devfest from "/img/devfest.jpeg";
+import church from "/img/church.jpeg";
+import cinema from "/img/cinema.jpeg";
+import sports from "/img/sports.jpeg";
+import webinar from "/img/webinar.jpeg";
 
 export {
   heroImg1,
@@ -24,4 +30,10 @@ export {
   heroImg10,
   recommendationBg,
   ctaBg,
+  party,
+  devfest,
+  church,
+  cinema,
+  sports,
+  webinar,
 };
