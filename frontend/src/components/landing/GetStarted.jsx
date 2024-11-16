@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { recommendationBg } from "../../constant/AppImage";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { setIsSignUp } from "../../redux/reducers/authViewSlice";
 
 const GetStarted = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="relative overflow-hidden inner h-72 flex justify-center items-center">
       <img
@@ -25,7 +29,7 @@ const GetStarted = () => {
             "Get event suggestions tailored to your interests! Don't let your favorite events slip away."
           }
         </p>
-        <Link>
+        <Link onClick={() => dispatch(setIsSignUp(true))} to={"/auth"}>
           <button className="flex items-center gap-1 py-3 px-6 text-lg md:text-2xl rounded-md bg-appNavyBlue text-appYellow">
             Get Started
             <Icon icon={"solar:arrow-right-broken"} />

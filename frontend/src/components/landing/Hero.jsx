@@ -65,7 +65,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="h-[680px] relative flex justify-center items-center p-4">
+    <div className="h-screen relative flex justify-center items-center p-4">
       <img
         loading="eager"
         className="absolute brightness-50 top-0 left-0 w-full h-full object-center object-cover"
@@ -105,7 +105,7 @@ const Hero = () => {
           <div className="text-xs md:text-sm md:w-1/4 border-l border-placeholderGray md:pl-4 relative">
             <div
               onClick={() => toggleDropdown()}
-              className="w-full h-full text-placeholderGray flex justify-between items-center"
+              className="w-full h-full cursor-pointer text-placeholderGray flex justify-between items-center"
             >
               <span className="flex items-center gap-1">
                 <Icon fontSize={24} icon={"mynaui:location"} />

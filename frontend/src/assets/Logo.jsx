@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <div className="flex items-center gap-2">
+    <Link to={"/"} className="flex items-center gap-2">
       <Icon
         color="white"
         className="mb-2"
@@ -10,7 +11,7 @@ const Logo = () => {
         icon={"dashicons:tickets-alt"}
       />
       <h1 className="text-appYellow text-3xl">Evenza</h1>
-    </div>
+    </Link>
   );
 };
 

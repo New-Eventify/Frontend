@@ -42,17 +42,17 @@ const Categories = () => {
     <div className="py-12">
       <div className="inner">
         <h2 className="text-2xl md:text-4xl mb-8">Explore Categories</h2>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
           {eventCategories.map((event, index) => (
             <Link
               className="max-w-48 grid justify-items-center gap-2 md:gap-5"
               key={index}
             >
               <motion.div
-                initial={{ opacity: 0, translateY: -50 }}
-                whileInView={{ opacity: 1, translateY: [-50, 50, 0] }}
+                initial={{ opacity: 0, y: -70 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ type: "spring", stiffness: 300 }}
                 className="shadow-md overflow-hidden rounded-full w-full aspect-square flex justify-center items-center"
               >
                 <img
