@@ -8,7 +8,7 @@ const EventCard = () => {
       initial={{ opacity: 0, translateY: 50 }}
       whileInView={{ opacity: 1, translateY: 0 }}
       transition={{ duration: 0.5 }}
-      className="rounded-md shadow overflow-hidden max-w-[512px] h-[460px]"
+      className="rounded-md shadow overflow-hidden md:max-w-[512px] h-[460px]"
     >
       <div className="w-full overflow-hidden relative h-3/5">
         <button className=" absolute top-2 right-2 z-20 rounded-full p-2 bg-appNavyBlue text-white">
@@ -19,17 +19,23 @@ const EventCard = () => {
           src={heroImg1}
           alt=""
         />
-        <p className="bg-appYellow p-2 absolute bottom-0 left 0 rounded-tr">
+        <p className="bg-appYellow text-xs md:text-sm p-2 absolute bottom-0 left 0 rounded-tr">
           Technology & Innovation
         </p>
       </div>
-      <div className="h-2/5 w-full flex gap-4 items-start p-4">
-        <h2 className="max-w-[5ch] text-center text-2xl m-2">NOV 22</h2>
+      <div className="h-2/5 w-full flex gap-2 items-start p-4">
+        <h2 className="max-w-[5ch] text-center text-xl md:text-2xl m-1">
+          NOV 22
+        </h2>
         <div className="grid gap-1">
-          <p className="font-semibold text-2xl">Event title</p>
-          <p className="text-lg text-appDarkGrayText font-medium">Venue</p>
-          <p className="text-lg text-appDarkGrayText">00:00 AM - 00:00 PM</p>
-          <div className="flex gap-2 text-appDarkGrayText text-lg items-center">
+          <p className="font-semibold text-lg md:text-2xl">Event title</p>
+          <p className="text-sm md:text-base text-appDarkGrayText font-medium">
+            Venue
+          </p>
+          <p className="text-sm md:text-base text-appDarkGrayText">
+            00:00 AM - 00:00 PM
+          </p>
+          <div className="flex flex-wrap gap-2 text-appDarkGrayText text-sm md:text-base items-center">
             <span className="flex gap-1 items-center">
               <Icon icon={"ion:ticket"} />
               NGN 4,999
