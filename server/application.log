@@ -1,0 +1,10 @@
+2024-11-20T15:31:46.544Z [error]: Failed to register user 
+Invalid `prisma.user.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\userService.ts:8:34
+
+  5 
+  6 export const signUp = async (email: string, password: string, name: string) => {
+  7   const hashedPassword = await hashPassword(password);
+→ 8   const user = await prisma.user.create(
+The table `public.User` does not exist in the current database.
+2024-11-20T15:52:40.362Z [info]: User registered successfully
