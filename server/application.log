@@ -121,3 +121,7 @@ Unique constraint failed on the fields: (`email`)
 2024-11-21T06:21:21.730Z [info]: User logged in successfully
 2024-11-21T06:22:29.145Z [info]: User authenticated successfully
 2024-11-21T06:22:29.651Z [info]: User signed out successfully, token blacklisted
+2024-11-21T17:21:39.310Z [info]: User registered successfully
+2024-11-21T17:29:05.689Z [info]: User logged in successfully
+2024-11-21T17:30:44.512Z [info]: User authenticated successfully
+2024-11-21T17:30:46.035Z [info]: User signed out successfully, token blacklisted
