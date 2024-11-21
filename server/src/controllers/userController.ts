@@ -54,8 +54,12 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+interface CustomRequest extends Request {
+  user?: { id: string; email: string };
+}
 
-export const signOut = async (req: Request, res: Response): Promise<void> => {
+
+export const signOut = async (req: CustomRequest, res: Response): Promise<void> => {
   authenticate(req, res, async () => {
     const token = req.headers.authorization?.split(' ')[1];
 

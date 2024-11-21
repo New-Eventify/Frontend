@@ -1,5 +1,6 @@
 // src/types/type.d.ts
 import 'express';
+import { User } from '@prisma/client';
 
 declare module 'express' {
   export interface Request {
