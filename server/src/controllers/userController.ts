@@ -5,31 +5,54 @@ import logger from '../utils/logger';
 import jwt from 'jsonwebtoken';
 import { blacklistToken } from '../services/authService';
 import { authenticate } from '../middlewares/authMiddleware';
-import {  isTokenBlacklisted } from '../middlewares/checkBlacklist';
+import { isTokenBlacklisted } from '../middlewares/checkBlacklist';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password, name } = req.body;
     const result = await signUp(email, password, name);
     res.status(201).json(result);
     logger.info('User registered successfully');
-  } catch (error: Error | any) {
+  } catch (error: any) {
+    let formattedError;
+
+    // Handle validation errors (Zod or similar)
+    if (Array.isArray(error?.issues)) {
+      formattedError = error.issues.map((issue: any) => ({
+        validation: issue.path[0],
+        code: issue.code,
+        message: issue.message,
+        path: issue.path,
+      }))[0]; // Select the first issue for the response
+    } else {
+      // For generic errors
+      formattedError = {
+        validation: 'generic',
+        code: 'unknown_error',
+        message: error.message || 'An error occurred.',
+      };
+    }
+
+    // Log the full error
     logger.error('Failed to register user', error);
-    res.status(400).json({ error: error.message });
+
+    // Return structured error response
+    res.status(400).json(formattedError);
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
     const result = await signIn(email, password);
     res.status(200).json(result);
     logger.info('User logged in successfully');
   } catch (error: Error | any) {
-    logger.error('Failed to log in user', error);
     res.status(400).json({ error: error.message });
+    logger.error('Failed to log in user', error);
   }
 };
+
 
 export const signOut = async (req: Request, res: Response): Promise<void> => {
   authenticate(req, res, async () => {

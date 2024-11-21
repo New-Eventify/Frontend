@@ -8,3 +8,113 @@ C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\userService.t
 → 8   const user = await prisma.user.create(
 The table `public.User` does not exist in the current database.
 2024-11-20T15:52:40.362Z [info]: User registered successfully
+2024-11-21T03:26:32.794Z [error]: Failed to register user 
+Invalid `prisma.user.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\userService.ts:8:34
+
+  5 
+  6 export const signUp = async (email: string, password: string, name: string) => {
+  7   const hashedPassword = await hashPassword(password);
+→ 8   const user = await prisma.user.create(
+Unique constraint failed on the fields: (`email`)
+2024-11-21T04:23:21.365Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T04:27:05.658Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T04:28:27.916Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T04:29:35.644Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T04:30:17.541Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T04:34:08.961Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T05:03:43.408Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-21T05:05:30.444Z [error]: Failed to register user [
+  {
+    "code": "too_small",
+    "minimum": 8,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "Password must be at least 8 characters long.",
+    "path": [
+      "password"
+    ]
+  }
+]
+2024-11-21T05:05:52.207Z [info]: User registered successfully
+2024-11-21T05:07:55.688Z [info]: User registered successfully
+2024-11-21T05:11:11.480Z [info]: User registered successfully
+2024-11-21T05:13:43.258Z [info]: User logged in successfully
+2024-11-21T05:14:47.450Z [error]: Failed to log in user Invalid credentials. Password does not match.
+2024-11-21T05:16:08.158Z [error]: Failed to log in user Invalid credentials. User not found.
+2024-11-21T05:17:53.459Z [info]: User logged in successfully
+2024-11-21T05:23:42.244Z [error]: Failed to authenticate user jwt must be provided
+2024-11-21T05:26:33.742Z [error]: Failed to authenticate user jwt must be provided
+2024-11-21T05:31:57.993Z [info]: User authenticated successfully
+2024-11-21T05:31:58.532Z [info]: User signed out successfully, token blacklisted
+2024-11-21T06:04:16.566Z [info]: User authenticated successfully
+2024-11-21T06:04:16.933Z [error]: Failed to sign out NOAUTH Authentication required
+2024-11-21T06:05:50.040Z [info]: User authenticated successfully
+2024-11-21T06:05:50.363Z [error]: Failed to sign out NOAUTH Authentication required
+2024-11-21T06:08:27.490Z [info]: User authenticated successfully
+2024-11-21T06:08:27.994Z [info]: User signed out successfully, token blacklisted
+2024-11-21T06:09:27.050Z [info]: User authenticated successfully
