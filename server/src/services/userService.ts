@@ -54,20 +54,18 @@ export const signIn = async (email: string, password: string) => {
   try {
     // Validate email format
     const validatedEmail = EmailSchema.parse(email);
-
-    // Find the user
     const user = await prisma.user.findUnique({ where: { email: validatedEmail } });
-    if (!user) {
-      throw new Error("Invalid credentials. User not found.");
-    }
-
-    // Compare the provided password with the stored hashed password
+    if (!user) throw new Error('Invalid credentials. User not found.');
+  
     const isMatch = await comparePassword(password, user.password);
-    if (!isMatch) {
-      throw new Error("Invalid credentials. Password does not match.");
-    }
-
-    // Generate a token
+    if (!isMatch) throw new Error('Invalid credentials. Password does not match.');
+  
+    // Update lastSignInAt field
+    await prisma.user.update({
+      where: { email: validatedEmail },
+      data: { lastSignInAt: new Date() }
+    });
+  
     return { token: generateToken(user.id), user };
   } catch (error: any) {
     console.error("Failed to sign in user", error);

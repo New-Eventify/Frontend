@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import { blacklistToken } from '../services/authService';
 import { authenticate } from '../middlewares/authMiddleware';
 import { isTokenBlacklisted } from '../middlewares/checkBlacklist';
+import { prisma } from '../models/prisma';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -75,6 +76,14 @@ export const signOut = async (req: Request, res: Response): Promise<void> => {
       if (!decodedToken || !decodedToken.exp) {
         res.status(400).json({ error: 'Invalid token' });
         return;
+      }
+
+      // Update lastSignOutAt field
+      if (req.user) {
+        await prisma.user.update({
+          where: { id: req.user.id },
+          data: { lastSignOutAt: new Date() }
+        });
       }
 
       const expiresIn = decodedToken.exp - Math.floor(Date.now() / 1000); // Remaining lifespan in seconds

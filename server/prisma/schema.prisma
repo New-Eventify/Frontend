@@ -9,11 +9,14 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  email    String  @unique
-  password String
-  name     String
-  events   Event[]
+  id             String    @id @default(uuid())
+  email          String    @unique
+  password       String
+  name           String
+  events         Event[]
+  createdAt      DateTime  @default(now()) // Tracks when the user was created
+  lastSignInAt   DateTime?                // Tracks the last time the user signed in
+  lastSignOutAt  DateTime?                // Tracks the last time the user signed out
 }
 
 model Event {
