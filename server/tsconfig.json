@@ -8,6 +8,6 @@
     "resolveJsonModule": true,
     "outDir": "./dist"
   },
-  "include": ["src/**/*.ts", "src/types/type.d.ts"], // Add the types here
+  "include": ["src/**/*.ts", "src/types/**/*.d.ts"], // Add the types here
   "exclude": ["node_modules"]
 }
