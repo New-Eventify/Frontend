@@ -125,3 +125,13 @@ Unique constraint failed on the fields: (`email`)
 2024-11-21T17:29:05.689Z [info]: User logged in successfully
 2024-11-21T17:30:44.512Z [info]: User authenticated successfully
 2024-11-21T17:30:46.035Z [info]: User signed out successfully, token blacklisted
+2024-11-21T19:04:18.631Z [error]: request entity too large request entity too large
+2024-11-21T19:06:15.037Z [error]: request entity too large request entity too large
+2024-11-22T04:08:46.494Z [error]: request entity too large request entity too large
+2024-11-22T04:10:08.187Z [error]: request entity too large request entity too large
+2024-11-22T04:24:17.411Z [error]: Unexpected token '-', "----------"... is not valid JSON Unexpected token '-', "----------"... is not valid JSON
+2024-11-22T04:27:51.713Z [error]: Unexpected token '-', "----------"... is not valid JSON Unexpected token '-', "----------"... is not valid JSON
+2024-11-22T04:46:58.020Z [error]: Unexpected token '-', "----------"... is not valid JSON Unexpected token '-', "----------"... is not valid JSON
+2024-11-22T04:47:33.796Z [error]: Unexpected end of form Unexpected end of form
+2024-11-22T04:53:47.966Z [info]: User authenticated successfully
+2024-11-22T04:53:54.563Z [info]: Event created successfully

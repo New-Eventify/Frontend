@@ -142,7 +142,7 @@
                 }
             }
         },
-        "/events/create": {
+        "/api/events/create": {
             "post": {
                 "summary": "Create a new event",
                 "description": "Allows authenticated users to create a new event.",

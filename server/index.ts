@@ -10,10 +10,13 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(express.json());
+
+// Set body size limits
+app.use(express.json({ limit: '10mb' })); // Increase limit for JSON bodies
+app.use(express.urlencoded({ extended: true, limit: '10mb' })); // Increase limit for URL-encoded bodies
 
 // Add Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs)); // Use the swagger.json file
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Your routes will go here
 app.get("/", (req, res) => {
