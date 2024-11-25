@@ -33,7 +33,7 @@ model Event {
   sessionId                        String?
   Session_Event_sessionIdToSession Session?       @relation("Event_sessionIdToSession", fields: [sessionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   user                             User           @relation("UserEvents", fields: [userId], references: [id])
-  venue                            Venue?         @relation(fields: [venueId], references: [id])
+  venue                            Venue?         @relation(fields: [venueId], references: [id], onDelete: Cascade)
   registrations                    Registration[]
   session                          Session[]
   tickets                          Ticket[]
@@ -54,7 +54,7 @@ model Session {
   endTime                        DateTime
   eventId                        String
   Event_Event_sessionIdToSession Event[]  @relation("Event_sessionIdToSession")
-  event                          Event    @relation(fields: [eventId], references: [id])
+  event                          Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
 }
 
 model Ticket {
@@ -64,7 +64,7 @@ model Ticket {
   eventId         String
   currency        String?
   admissions      Admission[] @relation("TicketAdmissions")
-  event           Event       @relation(fields: [eventId], references: [id])
+  event           Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
 }
 
 model Admission {

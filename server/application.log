@@ -1421,3 +1421,44 @@ C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.
   299 // Delete event
 → 300 const deletedEvent = await prisma.event.deleteMany(
 Foreign key constraint violated: `Session_eventId_fkey (index)`
+2024-11-25T16:36:59.308Z [info]: User registered successfully
+2024-11-25T16:38:54.340Z [info]: User authenticated successfully
+2024-11-25T16:38:54.410Z [info]: Incoming request to create event:
+2024-11-25T16:38:54.606Z [info]: Venue details before validation:
+2024-11-25T16:39:00.024Z [error]: Failed to create event: 
+Invalid `prisma.event.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:133:36
+
+  130 }));
+  131 
+  132 // Save the event to the database
+→ 133 const event = await prisma.event.create(
+Null constraint violation on the fields: (`currency`)
+2024-11-25T16:40:03.408Z [info]: User authenticated successfully
+2024-11-25T16:40:03.415Z [info]: Incoming request to create event:
+2024-11-25T16:40:03.438Z [info]: Venue details before validation:
+2024-11-25T16:40:13.759Z [info]: Event created successfully:
+2024-11-25T16:44:30.606Z [info]: User authenticated successfully
+2024-11-25T16:44:30.611Z [info]: Incoming request to create event:
+2024-11-25T16:44:30.680Z [info]: Venue details before validation:
+2024-11-25T16:44:38.728Z [info]: Event created successfully:
+2024-11-25T16:45:52.587Z [info]: User authenticated successfully
+2024-11-25T16:46:05.783Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:278:43
+
+  275 };
+  276 
+  277 // Update the event
+→ 278 const updatedEvent = await prisma.event.update(
+Null constraint violation on the fields: (`currency`)
+2024-11-25T16:46:52.644Z [info]: User authenticated successfully
+2024-11-25T16:47:09.777Z [info]: Event updated successfully:
+2024-11-25T16:48:32.644Z [info]: User authenticated successfully
+2024-11-25T16:48:32.645Z [info]: Fetching events for userId: 52c64188-7751-4aa8-9853-44136af69794
+2024-11-25T16:48:36.476Z [info]: Events fetched successfully:
+2024-11-25T16:49:01.483Z [info]: User authenticated successfully
+2024-11-25T16:49:01.489Z [info]: Fetching events for userId: 52c64188-7751-4aa8-9853-44136af69794
+2024-11-25T16:49:05.603Z [info]: Events fetched successfully:
+2024-11-25T16:49:49.158Z [info]: User authenticated successfully
+2024-11-25T16:49:51.058Z [info]: Event deleted successfully Event deleted successfully

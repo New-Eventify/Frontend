@@ -54,6 +54,17 @@ export const create = async (
       return res.status(400).json({ error: "Meeting link is required for 'online' events." });
     }
 
+    // Validate tickets array
+    if (!Array.isArray(tickets) || tickets.length === 0) {
+      return res.status(400).json({ error: "At least one ticket is required." });
+    }
+
+    //Validate Admissions array
+    if (!Array.isArray(tickets[0].admissions) || tickets[0].admissions.length === 0) {
+      return res.status(400).json({ error: "At least one admission is required." });
+    }
+
+    
     // Validate sessions array
     if (!Array.isArray(sessions) || sessions.length === 0) {
       return res.status(400).json({ error: "At least one session is required." });

@@ -12,6 +12,7 @@ const AdmissionSchema = z.object({
 const TicketSchema = z.object({
   status: z.boolean(),
   number_of_tickets: z.number().nonnegative(),
+  currency: z.string().min(1, { message: "Currency is required" }),
   admissions: z.array(AdmissionSchema), // Validating nested admissions
 });
 
@@ -71,6 +72,7 @@ const UpdateEventSchema = z.object({
       z.object({
         status: z.boolean().optional(),
         number_of_tickets: z.number().nonnegative().optional(),
+        currency: z.string().optional(),
         admissions: z
           .array(
             z.object({
@@ -119,6 +121,7 @@ export const createEvent = async (
   const ticketData = validatedData.tickets?.map((ticket) => ({
     status: ticket.status,
     numberOfTickets: ticket.number_of_tickets,
+    currency: ticket.currency,
     admissions: {
       create: ticket.admissions.map((admission) => ({
         name: admission.name,
@@ -260,6 +263,7 @@ export const updateEvent = async (eventId: string, data: any, userId: string) =>
           create: validatedData.tickets.map((ticket: any) => ({
             status: ticket.status,
             numberOfTickets: ticket.number_of_tickets,
+            currency: ticket.currency,
             admissions: {
               create: ticket.admissions?.map((admission: any) => ({
                 name: admission.name,
