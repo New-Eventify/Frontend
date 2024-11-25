@@ -125,3 +125,1340 @@ Unique constraint failed on the fields: (`email`)
 2024-11-21T17:29:05.689Z [info]: User logged in successfully
 2024-11-21T17:30:44.512Z [info]: User authenticated successfully
 2024-11-21T17:30:46.035Z [info]: User signed out successfully, token blacklisted
+2024-11-21T19:04:18.631Z [error]: request entity too large request entity too large
+2024-11-21T19:06:15.037Z [error]: request entity too large request entity too large
+2024-11-22T04:08:46.494Z [error]: request entity too large request entity too large
+2024-11-22T04:10:08.187Z [error]: request entity too large request entity too large
+2024-11-22T04:24:17.411Z [error]: Unexpected token '-', "----------"... is not valid JSON Unexpected token '-', "----------"... is not valid JSON
+2024-11-22T04:27:51.713Z [error]: Unexpected token '-', "----------"... is not valid JSON Unexpected token '-', "----------"... is not valid JSON
+2024-11-22T04:46:58.020Z [error]: Unexpected token '-', "----------"... is not valid JSON Unexpected token '-', "----------"... is not valid JSON
+2024-11-22T04:47:33.796Z [error]: Unexpected end of form Unexpected end of form
+2024-11-22T04:53:47.966Z [info]: User authenticated successfully
+2024-11-22T04:53:54.563Z [info]: Event created successfully
+2024-11-23T00:16:48.481Z [error]: Failed to authenticate user jwt expired
+2024-11-23T00:20:17.650Z [info]: User logged in successfully
+2024-11-23T00:21:03.439Z [info]: User authenticated successfully
+2024-11-23T00:21:03.444Z [error]: Failed to create event Cannot read properties of undefined (reading 'status')
+2024-11-23T00:27:34.751Z [info]: User authenticated successfully
+2024-11-23T00:27:34.752Z [error]: Failed to create event Cannot read properties of undefined (reading 'status')
+2024-11-23T00:28:06.705Z [info]: User authenticated successfully
+2024-11-23T00:28:06.707Z [error]: Failed to create event Cannot read properties of undefined (reading 'status')
+2024-11-23T00:29:16.452Z [info]: User authenticated successfully
+2024-11-23T00:29:16.461Z [error]: Failed to create event Cannot read properties of undefined (reading 'status')
+2024-11-23T01:22:15.013Z [info]: User authenticated successfully
+2024-11-23T01:22:48.874Z [info]: User authenticated successfully
+2024-11-23T01:23:32.530Z [info]: User authenticated successfully
+2024-11-23T01:23:59.479Z [info]: User authenticated successfully
+2024-11-23T01:30:55.884Z [info]: User authenticated successfully
+2024-11-23T01:30:59.755Z [info]: User authenticated successfully
+2024-11-23T01:33:29.638Z [info]: User authenticated successfully
+2024-11-23T02:09:12.918Z [info]: User authenticated successfully
+2024-11-23T02:09:20.162Z [info]: User authenticated successfully
+2024-11-23T02:09:52.131Z [info]: User authenticated successfully
+2024-11-23T02:09:54.742Z [info]: User authenticated successfully
+2024-11-23T02:49:26.036Z [info]: User authenticated successfully
+2024-11-23T02:52:40.004Z [info]: User authenticated successfully
+2024-11-23T02:56:15.059Z [info]: User authenticated successfully
+2024-11-23T02:56:52.199Z [info]: User authenticated successfully
+2024-11-23T02:57:02.329Z [info]: User authenticated successfully
+2024-11-23T02:58:36.196Z [info]: User authenticated successfully
+2024-11-23T03:00:16.260Z [info]: User authenticated successfully
+2024-11-23T03:00:16.333Z [error]: Failed to create event tickets is not iterable
+2024-11-23T03:04:19.804Z [info]: User authenticated successfully
+2024-11-23T03:04:19.817Z [error]: Failed to create event tickets is not iterable
+2024-11-23T03:04:22.138Z [info]: User authenticated successfully
+2024-11-23T03:04:22.143Z [error]: Failed to create event tickets is not iterable
+2024-11-23T03:04:51.444Z [info]: User authenticated successfully
+2024-11-23T03:04:51.458Z [error]: Failed to create event tickets is not iterable
+2024-11-23T03:04:54.085Z [info]: User authenticated successfully
+2024-11-23T03:04:54.089Z [error]: Failed to create event tickets is not iterable
+2024-11-23T03:04:56.620Z [info]: User authenticated successfully
+2024-11-23T03:04:56.632Z [error]: Failed to create event tickets is not iterable
+2024-11-23T03:23:26.255Z [info]: User authenticated successfully
+2024-11-23T03:23:26.295Z [error]: Failed to create event [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "event_category"
+    ],
+    "message": "Required"
+  },
+  {
+    "expected": "'one-time' | 'recurring'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "event_type"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "array",
+    "received": "undefined",
+    "path": [
+      "sessions"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "undefined",
+    "path": [
+      "venue"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T04:52:49.651Z [error]: Failed to authenticate user jwt expired
+2024-11-24T04:53:28.366Z [info]: User logged in successfully
+2024-11-24T04:53:59.900Z [info]: User authenticated successfully
+2024-11-24T04:53:59.909Z [error]: Failed to create event [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "event_category"
+    ],
+    "message": "Required"
+  },
+  {
+    "expected": "'one-time' | 'recurring'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "event_type"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "array",
+    "received": "undefined",
+    "path": [
+      "sessions"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "undefined",
+    "path": [
+      "venue"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T04:55:28.405Z [info]: User authenticated successfully
+2024-11-24T04:56:02.663Z [info]: User authenticated successfully
+2024-11-24T04:56:02.751Z [error]: Failed to create event [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "event_category"
+    ],
+    "message": "Required"
+  },
+  {
+    "expected": "'one-time' | 'recurring'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "event_type"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "array",
+    "received": "undefined",
+    "path": [
+      "sessions"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "undefined",
+    "path": [
+      "venue"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T05:11:39.451Z [info]: User authenticated successfully
+2024-11-24T05:11:47.854Z [info]: User authenticated successfully
+2024-11-24T05:14:05.471Z [info]: User authenticated successfully
+2024-11-24T05:17:21.787Z [info]: User authenticated successfully
+2024-11-24T05:25:07.513Z [info]: User authenticated successfully
+2024-11-24T05:26:13.644Z [info]: User authenticated successfully
+2024-11-24T05:27:43.919Z [info]: User authenticated successfully
+2024-11-24T06:05:04.854Z [info]: User authenticated successfully
+2024-11-24T06:05:52.821Z [info]: User authenticated successfully
+2024-11-24T06:06:26.327Z [info]: User authenticated successfully
+2024-11-24T06:08:46.399Z [info]: User authenticated successfully
+2024-11-24T06:09:26.317Z [info]: User authenticated successfully
+2024-11-24T06:11:42.906Z [info]: User authenticated successfully
+2024-11-24T06:14:40.367Z [info]: User authenticated successfully
+2024-11-24T06:15:46.363Z [info]: User authenticated successfully
+2024-11-24T06:15:46.387Z [error]: Failed to create event [
+  {
+    "received": "",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ''"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "venue",
+      "address"
+    ],
+    "message": "Expected string, received null"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T06:16:41.271Z [info]: User authenticated successfully
+2024-11-24T06:16:41.292Z [error]: Failed to create event [
+  {
+    "received": "",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ''"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "venue",
+      "address"
+    ],
+    "message": "Expected string, received null"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T06:17:34.260Z [info]: User authenticated successfully
+2024-11-24T06:17:34.281Z [error]: Failed to create event [
+  {
+    "received": "",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ''"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "venue",
+      "address"
+    ],
+    "message": "Expected string, received null"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T06:22:35.257Z [info]: User authenticated successfully
+2024-11-24T06:22:35.264Z [error]: Failed to create event [
+  {
+    "received": "",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ''"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "venue",
+      "address"
+    ],
+    "message": "Expected string, received null"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T06:36:06.204Z [info]: User authenticated successfully
+2024-11-24T06:37:26.039Z [info]: User authenticated successfully
+2024-11-24T06:37:37.834Z [info]: User authenticated successfully
+2024-11-24T06:45:26.367Z [info]: User authenticated successfully
+2024-11-24T06:49:02.341Z [info]: User authenticated successfully
+2024-11-24T06:49:43.812Z [info]: User authenticated successfully
+2024-11-24T06:50:35.551Z [info]: User authenticated successfully
+2024-11-24T06:50:35.573Z [error]: Failed to create event [
+  {
+    "received": "",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ''"
+  }
+]
+2024-11-24T06:53:22.082Z [info]: User authenticated successfully
+2024-11-24T06:53:22.089Z [error]: Failed to create event [
+  {
+    "received": "",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ''"
+  }
+]
+2024-11-24T06:53:44.811Z [info]: User authenticated successfully
+2024-11-24T06:54:26.480Z [info]: User authenticated successfully
+2024-11-24T06:54:54.575Z [info]: User authenticated successfully
+2024-11-24T06:56:27.368Z [info]: User authenticated successfully
+2024-11-24T07:07:42.194Z [info]: User authenticated successfully
+2024-11-24T07:08:03.437Z [info]: User authenticated successfully
+2024-11-24T07:15:05.468Z [info]: User authenticated successfully
+2024-11-24T07:15:05.491Z [error]: Failed to create event [
+  {
+    "received": " on-site",
+    "code": "invalid_enum_value",
+    "options": [
+      "on-site",
+      "online"
+    ],
+    "path": [
+      "venue",
+      "location"
+    ],
+    "message": "Invalid enum value. Expected 'on-site' | 'online', received ' on-site'"
+  }
+]
+2024-11-24T07:15:36.535Z [info]: User authenticated successfully
+2024-11-24T07:15:42.393Z [error]: Failed to create event Cannot set headers after they are sent to the client
+2024-11-24T07:16:07.583Z [info]: User authenticated successfully
+2024-11-24T07:16:10.883Z [error]: Failed to create event Cannot set headers after they are sent to the client
+2024-11-24T07:16:31.163Z [info]: User authenticated successfully
+2024-11-24T07:16:34.528Z [error]: Failed to create event Cannot set headers after they are sent to the client
+2024-11-24T07:17:03.689Z [info]: User authenticated successfully
+2024-11-24T07:27:32.705Z [info]: User authenticated successfully
+2024-11-24T07:27:36.720Z [error]: Failed to create event Cannot set headers after they are sent to the client
+2024-11-24T07:41:11.739Z [info]: User authenticated successfully
+2024-11-24T07:41:11.756Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:41:11.758Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:41:11.759Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:41:14.856Z [info]: Event created successfully
+2024-11-24T07:53:22.700Z [info]: User authenticated successfully
+2024-11-24T07:53:22.721Z [error]: Failed to parse JSON field: Unexpected token 'o', "[object Obj"... is not valid JSON
+2024-11-24T07:53:22.728Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:53:22.730Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:53:26.110Z [info]: Event created successfully
+2024-11-24T07:55:41.056Z [info]: User authenticated successfully
+2024-11-24T07:55:41.062Z [error]: Failed to parse JSON field: Unexpected token 'o', "[object Obj"... is not valid JSON
+2024-11-24T07:55:41.064Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:55:41.065Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T07:55:43.563Z [info]: Event created successfully
+2024-11-24T08:02:35.315Z [info]: User authenticated successfully
+2024-11-24T08:02:35.330Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:02:35.331Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:02:35.332Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:05:11.729Z [info]: User authenticated successfully
+2024-11-24T08:05:11.743Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:05:11.745Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:05:11.754Z [error]: Failed to create event [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "image"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T08:06:14.606Z [info]: User authenticated successfully
+2024-11-24T08:06:14.619Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:06:14.621Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:06:18.088Z [info]: Event created successfully
+2024-11-24T08:27:53.154Z [info]: User authenticated successfully
+2024-11-24T08:27:53.171Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:27:53.174Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:27:56.921Z [error]: Failed to create event 
+Invalid `prisma.event.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:87:36
+
+  84 }));
+  85 
+  86 // Save the event to the database
+→ 87 const event = await prisma.event.create(
+An operation failed because it depends on one or more records that were required but not found. No 'User' record(s) (needed to inline the relation on 'Event' record(s)) was found for a nested connect on one-to-many relation 'UserEvents'.
+2024-11-24T08:30:22.221Z [info]: User authenticated successfully
+2024-11-24T08:30:22.226Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:30:22.227Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:30:23.639Z [error]: Failed to create event 
+Invalid `prisma.event.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:87:36
+
+  84 }));
+  85 
+  86 // Save the event to the database
+→ 87 const event = await prisma.event.create(
+An operation failed because it depends on one or more records that were required but not found. No 'User' record(s) (needed to inline the relation on 'Event' record(s)) was found for a nested connect on one-to-many relation 'UserEvents'.
+2024-11-24T08:45:17.674Z [info]: User authenticated successfully
+2024-11-24T08:45:20.132Z [error]: Failed to sign out 
+Invalid `prisma.user.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\controllers\userController.ts:87:27
+
+  84 
+  85 // Update lastSignOutAt field
+  86 if (req.user) {
+→ 87   await prisma.user.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2024-11-24T08:45:46.587Z [info]: User registered successfully
+2024-11-24T08:46:21.313Z [info]: User authenticated successfully
+2024-11-24T08:46:21.325Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:46:21.328Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:46:23.427Z [info]: Event created successfully
+2024-11-24T08:48:36.499Z [info]: User authenticated successfully
+2024-11-24T08:48:36.503Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:48:36.504Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T08:48:38.928Z [error]: Failed to create event 
+Invalid `prisma.event.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:87:36
+
+  84 }));
+  85 
+  86 // Save the event to the database
+→ 87 const event = await prisma.event.create(
+Null constraint violation on the fields: (`sessionId`)
+2024-11-24T09:02:56.394Z [info]: User authenticated successfully
+2024-11-24T10:23:17.898Z [info]: User authenticated successfully
+2024-11-24T10:23:17.923Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T10:23:17.924Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T10:23:23.921Z [info]: Event created successfully
+2024-11-24T10:39:10.642Z [info]: User authenticated successfully
+2024-11-24T10:39:10.656Z [error]: Failed to parse JSON field: "[object Object]" is not valid JSON
+2024-11-24T10:39:15.930Z [info]: Event created successfully
+2024-11-24T10:43:32.744Z [info]: User authenticated successfully
+2024-11-24T10:43:39.039Z [info]: Event created successfully
+2024-11-24T11:18:44.859Z [info]: User authenticated successfully
+2024-11-24T11:18:44.862Z [info]: Incoming request to create event:
+2024-11-24T11:18:44.863Z [info]: Venue details before validation:
+2024-11-24T11:18:52.003Z [info]: Event created successfully:
+2024-11-24T11:26:43.713Z [info]: User authenticated successfully
+2024-11-24T11:26:43.717Z [info]: Incoming request to create event:
+2024-11-24T11:26:43.717Z [info]: Venue details before validation:
+2024-11-24T11:26:53.050Z [info]: Event created successfully:
+2024-11-24T11:48:31.465Z [error]: Expected double-quoted property name in JSON at position 1183 Expected double-quoted property name in JSON at position 1183
+2024-11-24T11:48:56.306Z [info]: User authenticated successfully
+2024-11-24T11:48:56.307Z [info]: Incoming request to create event:
+2024-11-24T11:48:56.307Z [info]: Venue details before validation:
+2024-11-24T11:50:14.364Z [info]: User authenticated successfully
+2024-11-24T11:50:14.367Z [info]: Incoming request to create event:
+2024-11-24T11:50:14.374Z [info]: Venue details before validation:
+2024-11-24T11:50:39.344Z [info]: User authenticated successfully
+2024-11-24T11:50:39.349Z [info]: Incoming request to create event:
+2024-11-24T11:50:39.356Z [info]: Venue details before validation:
+2024-11-24T11:52:09.093Z [info]: User authenticated successfully
+2024-11-24T11:52:09.094Z [info]: Incoming request to create event:
+2024-11-24T11:52:09.098Z [info]: Venue details before validation:
+2024-11-24T11:52:49.876Z [info]: User authenticated successfully
+2024-11-24T11:52:49.878Z [info]: Incoming request to create event:
+2024-11-24T11:52:49.884Z [info]: Venue details before validation:
+2024-11-24T11:52:49.899Z [error]: Failed to create event: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "venue",
+      "address"
+    ],
+    "message": "Expected string, received null"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "array",
+    "received": "undefined",
+    "path": [
+      "tickets",
+      0,
+      "admissions"
+    ],
+    "message": "Required"
+  }
+]
+2024-11-24T11:54:14.353Z [info]: User authenticated successfully
+2024-11-24T11:54:14.354Z [info]: Incoming request to create event:
+2024-11-24T11:54:14.360Z [info]: Venue details before validation:
+2024-11-24T11:54:14.362Z [error]: Failed to create event: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "null",
+    "path": [
+      "venue",
+      "address"
+    ],
+    "message": "Expected string, received null"
+  }
+]
+2024-11-24T11:54:34.353Z [info]: User authenticated successfully
+2024-11-24T11:54:34.354Z [info]: Incoming request to create event:
+2024-11-24T11:54:34.360Z [info]: Venue details before validation:
+2024-11-24T11:54:43.274Z [info]: Event created successfully:
+2024-11-24T12:23:35.370Z [info]: User authenticated successfully
+2024-11-24T12:23:35.371Z [info]: Incoming request to create event:
+2024-11-24T12:23:35.377Z [info]: Venue details before validation:
+2024-11-24T12:23:40.221Z [error]: Failed to create event: 
+Invalid `prisma.event.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:87:36
+
+  84 }));
+  85 
+  86 // Save the event to the database
+→ 87 const event = await prisma.event.create(
+Error occurred during query execution:
+ConnectorError(ConnectorError { user_facing_error: None, kind: QueryError(Error { kind: ToSql(2), cause: Some(Error { kind: ConversionError("Unable to fit integer value '7000000000' into an INT4 (32-bit signed integer)."), original_code: None, original_message: None }) }), transient: false })
+2024-11-24T12:24:11.411Z [info]: User authenticated successfully
+2024-11-24T12:24:11.411Z [info]: Incoming request to create event:
+2024-11-24T12:24:11.416Z [info]: Venue details before validation:
+2024-11-24T12:24:17.674Z [info]: Event created successfully:
+2024-11-24T14:46:38.969Z [info]: User authenticated successfully
+2024-11-24T14:46:38.985Z [info]: Fetching events for userId: 74d9289f-cc93-4d47-832f-3b056a5ddcd9
+2024-11-24T14:46:49.066Z [info]: Events fetched successfully:
+2024-11-24T15:12:03.339Z [info]: User authenticated successfully
+2024-11-24T15:14:39.710Z [info]: User authenticated successfully
+2024-11-24T15:14:44.755Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:210:43
+
+  207 }
+  208 
+  209 // Update the event
+→ 210 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "549bc148-57b2-4499-9556-e3240afe6f2a"
+        },
+        data: {
+          title: "Skincare Classes with Lekesha",
+          event_category: "skincare",
+          ~~~~~~~~~~~~~~
+          event_type: "one-time",
+          sessions: [
+            {
+              start_date: new Date("2024-11-27T00:00:00.000Z"),
+              start_time: new Date("2024-11-27T15:00:00.000Z"),
+              end_time: new Date("2024-11-27T16:00:00.000Z")
+            }
+          ],
+          venue: {
+            update: {
+              location: "online",
+              address: "",
+              meetingLink: undefined
+            }
+          },
+          description: "Are you tired of Googling skincare routines and not getting the results you want? Join our Skincare Classes to learn from the pros! Our in-person sessions will cover everything from understanding your skin type to creating a personalized skincare routine that works for you. Say goodbye to guesswork and hello to glowing skin! Don't miss out on this opportunity to level up your skincare game. Sign up now!",
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 200,
+                admissions: {
+                  create: [
+                    {
+                      name: "General",
+                      price: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-27T00:00:00.000Z"),
+                startTime: new Date("2024-11-27T15:00:00.000Z"),
+                endTime: new Date("2024-11-27T16:00:00.000Z")
+              }
+            ]
+          },
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   eventCategory?: String | StringFieldUpdateOperationsInput,
+      ?   eventType?: String | StringFieldUpdateOperationsInput,
+      ?   imageUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   sessionId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   registrations?: RegistrationUpdateManyWithoutEventNestedInput,
+      ?   user?: UserUpdateOneRequiredWithoutEventsNestedInput
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `event_category`. Did you mean `eventCategory`? Available options are marked with ?.
+2024-11-24T15:15:48.474Z [info]: User authenticated successfully
+2024-11-24T15:15:52.691Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:210:43
+
+  207 }
+  208 
+  209 // Update the event
+→ 210 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "549bc148-57b2-4499-9556-e3240afe6f2a"
+        },
+        data: {
+          title: "Skincare Classes with Lekesha",
+          event_type: "one-time",
+          ~~~~~~~~~~
+          sessions: [
+            {
+              start_date: new Date("2024-11-27T00:00:00.000Z"),
+              start_time: new Date("2024-11-27T15:00:00.000Z"),
+              end_time: new Date("2024-11-27T16:00:00.000Z")
+            }
+          ],
+          venue: {
+            update: {
+              location: "online",
+              address: "",
+              meetingLink: undefined
+            }
+          },
+          description: "Are you tired of Googling skincare routines and not getting the results you want? Join our Skincare Classes to learn from the pros! Our in-person sessions will cover everything from understanding your skin type to creating a personalized skincare routine that works for you. Say goodbye to guesswork and hello to glowing skin! Don't miss out on this opportunity to level up your skincare game. Sign up now!",
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 200,
+                admissions: {
+                  create: [
+                    {
+                      name: "General",
+                      price: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-27T00:00:00.000Z"),
+                startTime: new Date("2024-11-27T15:00:00.000Z"),
+                endTime: new Date("2024-11-27T16:00:00.000Z")
+              }
+            ]
+          },
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   eventCategory?: String | StringFieldUpdateOperationsInput,
+      ?   eventType?: String | StringFieldUpdateOperationsInput,
+      ?   imageUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   sessionId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   registrations?: RegistrationUpdateManyWithoutEventNestedInput,
+      ?   user?: UserUpdateOneRequiredWithoutEventsNestedInput
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `event_type`. Did you mean `eventType`? Available options are marked with ?.
+2024-11-24T15:16:20.305Z [info]: User authenticated successfully
+2024-11-24T15:16:22.773Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:210:43
+
+  207 }
+  208 
+  209 // Update the event
+→ 210 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "549bc148-57b2-4499-9556-e3240afe6f2a"
+        },
+        data: {
+          title: "Skincare Classes with Lekesha",
+          sessions: [
+          ~~~~~~~~
+            {
+              start_date: new Date("2024-11-27T00:00:00.000Z"),
+              start_time: new Date("2024-11-27T15:00:00.000Z"),
+              end_time: new Date("2024-11-27T16:00:00.000Z")
+            }
+          ],
+          venue: {
+            update: {
+              location: "online",
+              address: "",
+              meetingLink: undefined
+            }
+          },
+          description: "Are you tired of Googling skincare routines and not getting the results you want? Join our Skincare Classes to learn from the pros! Our in-person sessions will cover everything from understanding your skin type to creating a personalized skincare routine that works for you. Say goodbye to guesswork and hello to glowing skin! Don't miss out on this opportunity to level up your skincare game. Sign up now!",
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 200,
+                admissions: {
+                  create: [
+                    {
+                      name: "General",
+                      price: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-27T00:00:00.000Z"),
+                startTime: new Date("2024-11-27T15:00:00.000Z"),
+                endTime: new Date("2024-11-27T16:00:00.000Z")
+              }
+            ]
+          },
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   eventCategory?: String | StringFieldUpdateOperationsInput,
+      ?   eventType?: String | StringFieldUpdateOperationsInput,
+      ?   imageUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   sessionId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   registrations?: RegistrationUpdateManyWithoutEventNestedInput,
+      ?   user?: UserUpdateOneRequiredWithoutEventsNestedInput
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `sessions`. Did you mean `session`? Available options are marked with ?.
+2024-11-24T15:16:37.673Z [info]: User authenticated successfully
+2024-11-24T15:16:44.835Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:210:43
+
+  207 }
+  208 
+  209 // Update the event
+→ 210 const updatedEvent = await prisma.event.update(
+Foreign key constraint violated: `Admission_ticketId_fkey (index)`
+2024-11-24T15:31:13.732Z [info]: User authenticated successfully
+2024-11-24T15:31:17.854Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:210:43
+
+  207 }
+  208 
+  209 // Update the event
+→ 210 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "549bc148-57b2-4499-9556-e3240afe6f2a"
+        },
+        data: {
+          title: "Skincare Classes with Lekesha",
+          event_category: "skincare",
+          ~~~~~~~~~~~~~~
+          event_type: "one-time",
+          sessions: [
+            {
+              start_date: new Date("2024-11-27T00:00:00.000Z"),
+              start_time: new Date("2024-11-27T15:00:00.000Z"),
+              end_time: new Date("2024-11-27T16:00:00.000Z")
+            }
+          ],
+          venue: {
+            update: {
+              location: "online",
+              address: "",
+              meetingLink: undefined
+            }
+          },
+          description: "Are you tired of Googling skincare routines and not getting the results you want? Join our Skincare Classes to learn from the pros! Our in-person sessions will cover everything from understanding your skin type to creating a personalized skincare routine that works for you. Say goodbye to guesswork and hello to glowing skin! Don't miss out on this opportunity to level up your skincare game. Sign up now!",
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 200,
+                admissions: {
+                  create: [
+                    {
+                      name: "General",
+                      price: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-27T00:00:00.000Z"),
+                startTime: new Date("2024-11-27T15:00:00.000Z"),
+                endTime: new Date("2024-11-27T16:00:00.000Z")
+              }
+            ]
+          },
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   eventCategory?: String | StringFieldUpdateOperationsInput,
+      ?   eventType?: String | StringFieldUpdateOperationsInput,
+      ?   imageUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   sessionId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   registrations?: RegistrationUpdateManyWithoutEventNestedInput,
+      ?   user?: UserUpdateOneRequiredWithoutEventsNestedInput
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `event_category`. Did you mean `eventCategory`? Available options are marked with ?.
+2024-11-24T15:48:04.415Z [info]: User authenticated successfully
+2024-11-24T15:48:19.711Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:253:43
+
+  250 };
+  251 
+  252 // Update the event
+→ 253 const updatedEvent = await prisma.event.update(
+Foreign key constraint violated: `Admission_ticketId_fkey (index)`
+2024-11-24T15:57:26.971Z [info]: User authenticated successfully
+2024-11-24T15:57:32.174Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:254:43
+
+  251 };
+  252 
+  253 // Update the event
+→ 254 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "549bc148-57b2-4499-9556-e3240afe6f2a"
+        },
+        data: {
+          title: "Skincare Classes with Lekesha",
+          eventCategory: "skincare",
+          eventType: "one-time",
+          description: "Are you tired of Googling skincare routines and not getting the results you want? Join our Skincare Classes to learn from the pros! Our in-person sessions will cover everything from understanding your skin type to creating a personalized skincare routine that works for you. Say goodbye to guesswork and hello to glowing skin! Don't miss out on this opportunity to level up your skincare game. Sign up now!",
+          imageUrl: undefined,
+          venue: {
+            update: {
+              location: "online",
+              address: "",
+              meetingLink: undefined
+            }
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-27T00:00:00.000Z"),
+                startTime: new Date("2024-11-27T15:00:00.000Z"),
+                endTime: new Date("2024-11-27T16:00:00.000Z")
+              }
+            ]
+          },
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 200,
+                admissions: {
+                  deleteMany: {},
+                  create: [
+                    {
+                      name: "General",
+                      price: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `deleteMany`. Available options are marked with ?.
+2024-11-25T05:16:07.289Z [info]: User authenticated successfully
+2024-11-25T05:16:11.146Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:254:43
+
+  251 };
+  252 
+  253 // Update the event
+→ 254 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "549bc148-57b2-4499-9556-e3240afe6f2a"
+        },
+        data: {
+          title: "Skincare Classes with Lekesha",
+          eventCategory: "skincare",
+          eventType: "one-time",
+          description: "Are you tired of Googling skincare routines and not getting the results you want? Join our Skincare Classes to learn from the pros! Our in-person sessions will cover everything from understanding your skin type to creating a personalized skincare routine that works for you. Say goodbye to guesswork and hello to glowing skin! Don't miss out on this opportunity to level up your skincare game. Sign up now!",
+          imageUrl: undefined,
+          venue: {
+            update: {
+              location: "online",
+              address: "",
+              meetingLink: undefined
+            }
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-27T00:00:00.000Z"),
+                startTime: new Date("2024-11-27T15:00:00.000Z"),
+                endTime: new Date("2024-11-27T16:00:00.000Z")
+              }
+            ]
+          },
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 200,
+                admissions: {
+                  deleteMany: {},
+                  create: [
+                    {
+                      name: "General",
+                      price: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `deleteMany`. Available options are marked with ?.
+2024-11-25T05:40:09.901Z [info]: User authenticated successfully
+2024-11-25T05:40:09.906Z [info]: Incoming request to create event:
+2024-11-25T05:40:09.954Z [info]: Venue details before validation:
+2024-11-25T05:40:21.898Z [info]: Event created successfully:
+2024-11-25T05:46:08.197Z [info]: User authenticated successfully
+2024-11-25T05:46:13.961Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:254:43
+
+  251 };
+  252 
+  253 // Update the event
+→ 254 const updatedEvent = await prisma.event.update({
+        where: {
+          id: "22f25288-cecb-441d-b789-a47d240b6573"
+        },
+        data: {
+          title: "Updated Global Day of Prayer with Pastor Chris",
+          eventCategory: "prayer",
+          eventType: "recurring",
+          description: "From Saturday 30th November to Sunday 1st, of December, we are going to utter words into the realm of the Spirit to change Nations and situations around the world. Join our Man of God Pastor Chris for the November Global Day of Prayer. This is the time to get everyone involved, reach out to those you have contact with, and enlist them to participate in this life-changing meeting in this glorious year 2024.",
+          imageUrl: undefined,
+          venue: {
+            update: {
+              location: "on-site",
+              address: "Asese, Lagos, Nigeria.",
+              meetingLink: undefined
+            }
+          },
+          session: {
+            deleteMany: {},
+            create: [
+              {
+                startDate: new Date("2024-11-30T00:00:00.000Z"),
+                startTime: new Date("2024-11-30T18:00:00.000Z"),
+                endTime: new Date("2024-11-30T23:00:00.000Z")
+              },
+              {
+                startDate: new Date("2024-12-01T00:00:00.000Z"),
+                startTime: new Date("2024-12-01T18:00:00.000Z"),
+                endTime: new Date("2024-12-01T22:00:00.000Z")
+              }
+            ]
+          },
+          tickets: {
+            deleteMany: {},
+            create: [
+              {
+                status: true,
+                numberOfTickets: 7000,
+                admissions: {
+                  deleteMany: {},
+                  create: [
+                    {
+                      name: "CEC Members",
+                      price: 30
+                    },
+                    {
+                      name: "Regional Pst",
+                      price: 15
+                    },
+                    {
+                      name: "General",
+                      price: 0
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        include: {
+          session: true,
+          venue: true,
+          tickets: {
+            include: {
+              admissions: true
+            }
+          }
+        }
+      })
+
+Unknown argument `deleteMany`. Available options are marked with ?.
+2024-11-25T05:47:11.936Z [info]: User authenticated successfully
+2024-11-25T05:47:35.137Z [info]: Event updated successfully:
+2024-11-25T06:18:48.217Z [info]: User registered successfully
+2024-11-25T06:29:01.491Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-25T06:30:23.163Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-25T06:31:00.696Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-25T06:31:17.292Z [error]: Failed to register user [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address.",
+    "path": [
+      "email"
+    ]
+  }
+]
+2024-11-25T06:31:36.861Z [info]: User registered successfully
+2024-11-25T07:05:30.909Z [info]: User authenticated successfully
+2024-11-25T07:05:34.820Z [info]: User signed out successfully, token blacklisted
+2024-11-25T07:09:28.928Z [info]: User authenticated successfully
+2024-11-25T07:09:28.929Z [info]: Incoming request to create event:
+2024-11-25T07:09:29.031Z [info]: Venue details before validation:
+2024-11-25T07:09:36.837Z [info]: Event created successfully:
+2024-11-25T07:16:42.074Z [info]: User authenticated successfully
+2024-11-25T07:16:42.074Z [info]: Incoming request to create event:
+2024-11-25T07:16:42.116Z [info]: Venue details before validation:
+2024-11-25T07:16:50.776Z [info]: Event created successfully:
+2024-11-25T07:22:23.596Z [info]: User authenticated successfully
+2024-11-25T07:22:23.596Z [info]: Incoming request to create event:
+2024-11-25T07:22:23.604Z [info]: Venue details before validation:
+2024-11-25T07:22:32.323Z [info]: Event created successfully:
+2024-11-25T07:23:21.022Z [info]: User logged in successfully
+2024-11-25T07:33:51.486Z [info]: User authenticated successfully
+2024-11-25T07:33:51.501Z [info]: Incoming request to create event:
+2024-11-25T07:33:51.505Z [info]: Venue details before validation:
+2024-11-25T07:33:59.484Z [info]: Event created successfully:
+2024-11-25T07:44:18.558Z [info]: User authenticated successfully
+2024-11-25T07:44:18.559Z [info]: Incoming request to create event:
+2024-11-25T07:44:18.593Z [info]: Venue details before validation:
+2024-11-25T07:44:26.632Z [info]: Event created successfully:
+2024-11-25T07:58:58.413Z [info]: User authenticated successfully
+2024-11-25T07:58:58.414Z [info]: Incoming request to create event:
+2024-11-25T07:58:58.418Z [info]: Venue details before validation:
+2024-11-25T07:59:06.749Z [info]: Event created successfully:
+2024-11-25T08:22:10.652Z [info]: User authenticated successfully
+2024-11-25T08:22:10.653Z [info]: Incoming request to create event:
+2024-11-25T08:22:10.670Z [info]: Venue details before validation:
+2024-11-25T08:22:19.884Z [info]: Event created successfully:
+2024-11-25T08:31:24.884Z [info]: User authenticated successfully
+2024-11-25T08:31:24.899Z [error]: Failed to delete event [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "eventId"
+    ],
+    "message": "Required"
+  }
+]
+2024-11-25T08:32:10.902Z [info]: User authenticated successfully
+2024-11-25T08:32:10.915Z [error]: Failed to delete event [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "eventId"
+    ],
+    "message": "Required"
+  }
+]
+2024-11-25T08:33:07.278Z [info]: User authenticated successfully
+2024-11-25T08:33:10.927Z [error]: Failed to delete event 
+Invalid `prisma.event.deleteMany()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:300:43
+
+  297 DeleteEventSchema.parse({ eventId });
+  298 
+  299 // Delete event
+→ 300 const deletedEvent = await prisma.event.deleteMany(
+Foreign key constraint violated: `Session_eventId_fkey (index)`
+2024-11-25T16:36:59.308Z [info]: User registered successfully
+2024-11-25T16:38:54.340Z [info]: User authenticated successfully
+2024-11-25T16:38:54.410Z [info]: Incoming request to create event:
+2024-11-25T16:38:54.606Z [info]: Venue details before validation:
+2024-11-25T16:39:00.024Z [error]: Failed to create event: 
+Invalid `prisma.event.create()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:133:36
+
+  130 }));
+  131 
+  132 // Save the event to the database
+→ 133 const event = await prisma.event.create(
+Null constraint violation on the fields: (`currency`)
+2024-11-25T16:40:03.408Z [info]: User authenticated successfully
+2024-11-25T16:40:03.415Z [info]: Incoming request to create event:
+2024-11-25T16:40:03.438Z [info]: Venue details before validation:
+2024-11-25T16:40:13.759Z [info]: Event created successfully:
+2024-11-25T16:44:30.606Z [info]: User authenticated successfully
+2024-11-25T16:44:30.611Z [info]: Incoming request to create event:
+2024-11-25T16:44:30.680Z [info]: Venue details before validation:
+2024-11-25T16:44:38.728Z [info]: Event created successfully:
+2024-11-25T16:45:52.587Z [info]: User authenticated successfully
+2024-11-25T16:46:05.783Z [error]: Failed to update event: 
+Invalid `prisma.event.update()` invocation in
+C:\Users\Evans Agina\Desktop\event-booking-app\server\src\services\eventService.ts:278:43
+
+  275 };
+  276 
+  277 // Update the event
+→ 278 const updatedEvent = await prisma.event.update(
+Null constraint violation on the fields: (`currency`)
+2024-11-25T16:46:52.644Z [info]: User authenticated successfully
+2024-11-25T16:47:09.777Z [info]: Event updated successfully:
+2024-11-25T16:48:32.644Z [info]: User authenticated successfully
+2024-11-25T16:48:32.645Z [info]: Fetching events for userId: 52c64188-7751-4aa8-9853-44136af69794
+2024-11-25T16:48:36.476Z [info]: Events fetched successfully:
+2024-11-25T16:49:01.483Z [info]: User authenticated successfully
+2024-11-25T16:49:01.489Z [info]: Fetching events for userId: 52c64188-7751-4aa8-9853-44136af69794
+2024-11-25T16:49:05.603Z [info]: Events fetched successfully:
+2024-11-25T16:49:49.158Z [info]: User authenticated successfully
+2024-11-25T16:49:51.058Z [info]: Event deleted successfully Event deleted successfully

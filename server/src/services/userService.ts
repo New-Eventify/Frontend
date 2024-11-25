@@ -42,7 +42,14 @@ export const signUp = async (email: string, password: string, name: string) => {
     });
 
     // Generate a token
-    return { token: generateToken(user.id), email: user.email, name: user.name };
+    return { token: generateToken(user.id), 
+      email: user.email, 
+      name: user.name, 
+      id: user.id, 
+      lastSignInAt: user.lastSignInAt, 
+      createdAt: user.createdAt, 
+      lastSignOutAt: user.lastSignOutAt 
+    };
   } catch (error: any) {
     console.error("Failed to register user", error);
     throw new Error(error.message || "Failed to register user. Please try again later.");
@@ -66,7 +73,16 @@ export const signIn = async (email: string, password: string) => {
       data: { lastSignInAt: new Date() }
     });
   
-    return { token: generateToken(user.id), user };
+    return { 
+      token: generateToken(user.id), 
+      user: { 
+        email: user.email, 
+        name: user.name, 
+        id: user.id, 
+        lastSignInAt: user.lastSignInAt,
+        createdAt: user.createdAt,
+        lastSignOutAt: user.lastSignOutAt
+      }};
   } catch (error: any) {
     console.error("Failed to sign in user", error);
     throw new Error(error.message || "Failed to sign in user. Please try again later.");
