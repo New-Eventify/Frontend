@@ -9,31 +9,90 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(uuid())
-  email          String    @unique
-  password       String
-  name           String
-  events         Event[]
-  createdAt      DateTime  @default(now()) // Tracks when the user was created
-  lastSignInAt   DateTime?                // Tracks the last time the user signed in
-  lastSignOutAt  DateTime?                // Tracks the last time the user signed out
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  name          String
+  createdAt     DateTime  @default(now())
+  lastSignInAt  DateTime?
+  lastSignOutAt DateTime?
+  events        Event[]   @relation("UserEvents")
 }
 
 model Event {
-  id            String         @id @default(uuid())
+  id                               String         @id @default(uuid())
+  description                      String?
+  userId                           String
+  imageUrl                         String?
+  createdAt                        DateTime       @default(now())
+  eventCategory                    String
+  eventType                        String
+  title                            String
+  updatedAt                        DateTime       @updatedAt
+  venueId                          String?
+  sessionId                        String?
+  Session_Event_sessionIdToSession Session?       @relation("Event_sessionIdToSession", fields: [sessionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user                             User           @relation("UserEvents", fields: [userId], references: [id])
+  venue                            Venue?         @relation(fields: [venueId], references: [id], onDelete: Cascade)
+  registrations                    Registration[]
+  session                          Session[]
+  tickets                          Ticket[]
+}
+
+model Venue {
+  id          String  @id @default(uuid())
+  location    String
+  address     String?
+  meetingLink String?
+  Event       Event[]
+}
+
+model Session {
+  id                             String   @id @default(uuid())
+  startDate                      DateTime
+  startTime                      DateTime
+  endTime                        DateTime
+  eventId                        String
+  Event_Event_sessionIdToSession Event[]  @relation("Event_sessionIdToSession")
+  event                          Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model Ticket {
+  id              String      @id @default(uuid())
+  status          Boolean
+  numberOfTickets Int
+  eventId         String
+  currency        String?
+  admissions      Admission[] @relation("TicketAdmissions")
+  event           Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model Admission {
+  id            String                  @id(map: "admission_pkey") @default(uuid())
   name          String
-  description   String?
-  date          DateTime
-  userId        String
-  imageUrl      String?
-  user          User           @relation(fields: [userId], references: [id])
-  registrations Registration[]
+  price         Float
+  ticketId      String
+  ticket        Ticket                  @relation("TicketAdmissions", fields: [ticketId], references: [id], onDelete: Cascade, map: "admission_ticketid_fkey")
+  registrations RegistrationAdmission[]
 }
 
 model Registration {
-  id      String @id @default(uuid())
-  name    String
-  email   String
-  eventId String
-  event   Event  @relation(fields: [eventId], references: [id])
+  id          String                  @id @default(uuid())
+  email       String
+  eventId     String
+  createdAt   DateTime                @default(now())
+  firstName   String
+  lastName    String
+  phoneNumber String
+  event       Event                   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  admissions  RegistrationAdmission[]
+}
+
+model RegistrationAdmission {
+  id             String       @id @default(uuid())
+  registrationId String
+  admissionId    String
+  quantity       Int          @default(1)
+  admission      Admission    @relation(fields: [admissionId], references: [id], onDelete: Cascade)
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
 }

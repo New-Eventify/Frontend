@@ -1,12 +1,12 @@
 // src/controllers/userController.ts
-import { Request, Response } from "express";
-import { signUp, signIn } from "../services/userService";
-import logger from "../utils/logger";
-import jwt from "jsonwebtoken";
-import { blacklistToken } from "../services/authService";
-import { authenticate } from "../middlewares/authMiddleware";
-import { isTokenBlacklisted } from "../middlewares/checkBlacklist";
-import { prisma } from "../models/prisma";
+import { Request, Response } from 'express';
+import { signUp, signIn } from '../services/userService';
+import logger from '../utils/logger';
+import jwt from 'jsonwebtoken';
+import { blacklistToken } from '../utils/blacklistToken';
+import { authenticate } from '../middlewares/authMiddleware';
+import { isTokenBlacklisted } from '../middlewares/checkBlacklist';
+import { prisma } from '../models/prisma';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
