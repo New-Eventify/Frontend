@@ -1,28 +1,29 @@
+// src/controllers/registrationController.ts
 import { Request, Response } from "express";
-import { registerForEvent } from "../services/registrationService";
 import logger from "../utils/logger";
+import { registerForEvent } from "../services/registrationService";
 
-interface CustomRequest extends Request {
-    user?: { id: string; email: string };
-  }
-
-export const register = async (req: CustomRequest, res: Response): Promise<void> => {
+/**
+ * Controller for user registration to an event.
+ */
+export const createRegistration = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { firstName, lastName, email, phoneNumber, admissionId, eventId } = req.body;
+    const { firstName, lastName, email, phoneNumber, eventId, admissions } = req.body;
 
-    const registration = await registerForEvent({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      admissionId,
-      eventId,
+    // Process registration
+    const registration = await registerForEvent({ firstName, lastName, email, phoneNumber, eventId, admissions });
+
+    res.status(201).json({
+      message: "Registration successful.",
+      registration,
     });
 
-    res.status(201).json({ registration });
-    logger.info("User registered successfully for event:", eventId);
-  } catch (err: any) {
-    logger.error("Failed to register for event:", err);
-    res.status(400).json({ error: "Failed to register for event", details: err.message });
+    logger.info("User registered successfully for event:", registration);
+  } catch (error: any) {
+    logger.error("Failed to register user for event:", error);
+    res.status(400).json({
+      error: "Failed to register for event.",
+      details: error.message,
+    });
   }
 };

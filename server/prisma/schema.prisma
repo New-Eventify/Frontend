@@ -68,23 +68,31 @@ model Ticket {
 }
 
 model Admission {
-  id       String @id(map: "admission_pkey") @default(uuid())
-  name     String
-  price    Float
-  ticketId String
-  ticket   Ticket @relation("TicketAdmissions", fields: [ticketId], references: [id], onDelete: Cascade, map: "admission_ticketid_fkey")
-  Registration Registration[]
+  id            String                  @id(map: "admission_pkey") @default(uuid())
+  name          String
+  price         Float
+  ticketId      String
+  ticket        Ticket                  @relation("TicketAdmissions", fields: [ticketId], references: [id], onDelete: Cascade, map: "admission_ticketid_fkey")
+  registrations RegistrationAdmission[]
 }
 
 model Registration {
-  id              String   @id @default(uuid())
-  firstName       String
-  lastName        String
-  email           String
-  phoneNumber     String
-  admissionId     String
-  admission       Admission @relation(fields: [admissionId], references: [id], onDelete: Cascade)
-  eventId         String
-  event           Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  createdAt       DateTime  @default(now())
+  id          String                  @id @default(uuid())
+  email       String
+  eventId     String
+  createdAt   DateTime                @default(now())
+  firstName   String
+  lastName    String
+  phoneNumber String
+  event       Event                   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  admissions  RegistrationAdmission[]
+}
+
+model RegistrationAdmission {
+  id             String       @id @default(uuid())
+  registrationId String
+  admissionId    String
+  quantity       Int          @default(1)
+  admission      Admission    @relation(fields: [admissionId], references: [id], onDelete: Cascade)
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
 }

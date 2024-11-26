@@ -643,9 +643,217 @@
                 }
                 }
             }
+        },
+        "/api/events/delete/:eventId": {
+            "delete": {
+                "tags": ["Events"],
+                "summary": "Delete an Event",
+                "description": "Delete an event by its ID. The user must own the event.",
+                "parameters": [
+                {
+                    "name": "eventId",
+                    "in": "path",
+                    "required": true,
+                    "description": "The ID of the event to delete.",
+                    "schema": {
+                    "type": "string",
+                    "format": "uuid"
+                    }
+                }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Event deleted successfully.",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object",
+                        "properties": {
+                            "message": {
+                            "type": "string",
+                            "example": "Event deleted successfully."
+                            }
+                        }
+                        }
+                    }
+                    }
+                },
+                "404": {
+                    "description": "Event not found or user not authorized.",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object",
+                        "properties": {
+                            "error": {
+                            "type": "string",
+                            "example": "Event not found or unauthorized."
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+        },
+        "/api/events/upload-image": {
+            "post": {
+                "tags": ["Events"],
+                "summary": "Upload an Event Image",
+                "description": "Upload an image for an event. The image will be stored in the Supabase bucket.",
+                "requestBody": {
+                "content": {
+                    "multipart/form-data": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "file": {
+                            "type": "string",
+                            "format": "binary",
+                            "description": "The image file to upload."
+                        }
+                        }
+                    }
+                    }
+                },
+                "required": true
+                },
+                "responses": {
+                "200": {
+                    "description": "Image uploaded successfully.",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object",
+                        "properties": {
+                            "message": {
+                            "type": "string",
+                            "example": "Image uploaded successfully."
+                            },
+                            "imageUrl": {
+                            "type": "string",
+                            "example": "https://supabase.bucket.url/image.png"
+                            }
+                        }
+                        }
+                    }
+                    }
+                },
+                "400": {
+                    "description": "Invalid file format or size.",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object",
+                        "properties": {
+                            "error": {
+                            "type": "string",
+                            "example": "Invalid file format or size."
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+        },
+        "/api/registrations/create": {
+            "post": {
+                "tags": ["Registrations"],
+                "summary": "Register for an Event",
+                "description": "Register a user for an event with the selected admissions.",
+                "requestBody": {
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "firstName": {
+                            "type": "string",
+                            "example": "John"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "example": "Doe"
+                        },
+                        "email": {
+                            "type": "string",
+                            "format": "email",
+                            "example": "johndoe@example.com"
+                        },
+                        "phoneNumber": {
+                            "type": "string",
+                            "example": "1234567890"
+                        },
+                        "eventId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "example": "123e4567-e89b-12d3-a456-426614174000"
+                        },
+                        "admissions": {
+                            "type": "array",
+                            "items": {
+                            "type": "object",
+                            "properties": {
+                                "admissionId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "example": "456e7890-e89b-12d3-a456-426614174111"
+                                },
+                                "quantity": {
+                                "type": "integer",
+                                "example": 2
+                                }
+                            }
+                            }
+                        }
+                        },
+                        "required": ["firstName", "lastName", "email", "phoneNumber", "eventId", "admissions"]
+                    }
+                    }
+                }
+                },
+                "responses": {
+                "201": {
+                    "description": "Registration successful.",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object",
+                        "properties": {
+                            "message": {
+                            "type": "string",
+                            "example": "Registration successful."
+                            },
+                            "registration": {
+                            "$ref": "#/components/schemas/Registration"
+                            }
+                        }
+                        }
+                    }
+                    }
+                },
+                "400": {
+                    "description": "Failed to register for event.",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object",
+                        "properties": {
+                            "error": {
+                            "type": "string",
+                            "example": "Invalid data."
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
         }
-
-
     },
     "components": {
         "securitySchemes": {
