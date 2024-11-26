@@ -73,12 +73,18 @@ model Admission {
   price    Float
   ticketId String
   ticket   Ticket @relation("TicketAdmissions", fields: [ticketId], references: [id], onDelete: Cascade, map: "admission_ticketid_fkey")
+  Registration Registration[]
 }
 
 model Registration {
-  id      String @id @default(uuid())
-  name    String
-  email   String
-  eventId String
-  event   Event  @relation(fields: [eventId], references: [id])
+  id              String   @id @default(uuid())
+  firstName       String
+  lastName        String
+  email           String
+  phoneNumber     String
+  admissionId     String
+  admission       Admission @relation(fields: [admissionId], references: [id], onDelete: Cascade)
+  eventId         String
+  event           Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
 }

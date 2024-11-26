@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { create, getEventsByUserId, update, deleteEventById } from "../controllers/eventController";
+import { 
+    create, 
+    getEventsByUserId, 
+    update, 
+    deleteEventById, 
+    uploadEventImage 
+} from "../controllers/eventController";
 import { upload } from "../middlewares/fileUpload";
 
 const router = Router();
@@ -14,5 +20,7 @@ router.put("/update/:id", update); // New route for updating events
 
 // Delete event
 router.delete("/delete/:eventId", deleteEventById);
+
+router.post("/upload-image", upload.single("image"), uploadEventImage);
 
 export default router;

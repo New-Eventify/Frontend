@@ -7,6 +7,7 @@ import {
 } from "../services/eventService"; // Import the new service
 import { authenticate } from "../middlewares/authMiddleware";
 import logger from "../utils/logger";
+import { uploadToSupabase } from "../utils/supabaseUploader";
 
 interface CustomRequest extends Request {
   user?: { id: string; email: string };
@@ -179,4 +180,27 @@ export const deleteEventById = async (req: CustomRequest, res: Response): Promis
         res.status(500).json({ error: "Failed to delete event", details: err.message });
       }
     });
+};
+
+export const uploadEventImage = async (req: CustomRequest, res: Response): Promise<void> => {
+    authenticate(req, res, async () => {
+        // const { eventId } = req.params;
+    
+        if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+        }
+    
+        try {
+        // Upload the image to Supabase
+        const imageUrl = await uploadToSupabase(req.file.buffer, req.file.originalname, "event-images");
+    
+        // Update the event with the uploaded image URL
+        
+        res.status(200).json(imageUrl);
+        logger.info("Image uploaded successfully");
+        } catch (err: any) {
+        logger.error("Failed to upload event image:", err);
+        res.status(500).json({ error: "Failed to upload event image", details: err.message });
+        }
+    })
 };

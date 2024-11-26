@@ -1462,3 +1462,5 @@ Null constraint violation on the fields: (`currency`)
 2024-11-25T16:49:05.603Z [info]: Events fetched successfully:
 2024-11-25T16:49:49.158Z [info]: User authenticated successfully
 2024-11-25T16:49:51.058Z [info]: Event deleted successfully Event deleted successfully
+2024-11-26T00:13:07.083Z [info]: User authenticated successfully
+2024-11-26T00:13:14.412Z [info]: Image uploaded successfully
