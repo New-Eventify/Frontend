@@ -7,10 +7,12 @@ import { motion } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { GoBack } from "../hooks/GoBack";
 import Dropdown from "../components/Dropdown";
+import { useAuth } from "../context/AuthContext";
 
 const NewEvent = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [preview, setPreview] = useState(null);
+  const { user } = useAuth();
 
   // Steps array
   const steps = ["Edit", "Banner", "Ticketing", "Review"];
@@ -29,11 +31,13 @@ const NewEvent = () => {
         },
       ],
       location: "",
+      meetingLink: "",
+      address: "",
       description: "",
     },
     banner: null,
     ticketing: {
-      type: "",
+      entryType: "",
       tickets: [
         {
           name: "",
@@ -59,6 +63,8 @@ const NewEvent = () => {
           })
         ),
         location: Yup.string().required("Set a location for your event"),
+        meetingLink: Yup.string(),
+        address: Yup.string().required("An address is needed"),
         description: Yup.string().required(
           "Describe what the event is all about"
         ),
@@ -79,6 +85,7 @@ const NewEvent = () => {
     }),
     Yup.object({
       ticketing: Yup.object({
+        entryType: Yup.string().required("ticketed"),
         tickets: Yup.array().of(
           Yup.object({
             name: Yup.string().required("Name of Ticket"),
@@ -89,7 +96,6 @@ const NewEvent = () => {
       }),
     }),
   ];
-
   // Handlers for navigation
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
@@ -102,7 +108,7 @@ const NewEvent = () => {
   const handleImageChange = (event, setFieldValue) => {
     const file = event.target.files[0];
     if (file) {
-      setFieldValue("image", file); // Set the file in Formik's state
+      setFieldValue("banner", file); // Set the file in Formik's state
       setPreview(URL.createObjectURL(file)); // Generate preview
     }
   };
@@ -222,10 +228,21 @@ const NewEvent = () => {
             validationSchema={validationSchemas[currentStep]}
             onSubmit={onSubmit}
           >
-            {({ values, isSubmitting, setFieldValue, errors, touched }) => (
+            {({
+              values,
+              setFieldValue,
+              errors,
+              touched,
+              handleBlur,
+              handleChange,
+            }) => (
               <Form className="mt-8 w-full">
                 {currentStep === 0 && (
-                  <div className="grid gap-6 max-w-3xl">
+                  <motion.div
+                    initial={{ opacity: 0, x: 150 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="grid gap-6 max-w-4xl"
+                  >
                     <div>
                       <p className="text-xl w-2/6 font-semibold text-end">
                         Event Details
@@ -265,13 +282,12 @@ const NewEvent = () => {
                             options={eventCategories}
                             onChange={(selectedOption) => {
                               // Manually setting Formik field value when dropdown selection changes
-                              setFieldValue("category", selectedOption.value);
+                              setFieldValue("edit.category", selectedOption);
                             }}
                           />
                         </div>
                       </div>
                     </div>
-
                     <div>
                       <p className="text-xl w-2/6 font-semibold text-end">
                         Date & Time
@@ -399,12 +415,11 @@ const NewEvent = () => {
                         </div>
                       </div>
                     </div>
-
                     <div>
                       <p className="text-xl w-2/6 font-semibold text-end">
                         Location
                       </p>
-                      <div className="flex mt-2 gap-4 items-start">
+                      <div className="flex my-2 gap-4 items-start">
                         <label
                           className="flex justify-end w-2/6"
                           htmlFor="edit.location"
@@ -418,12 +433,73 @@ const NewEvent = () => {
                             options={popularCitiesInNigeria}
                             onChange={(selectedOption) => {
                               // Manually setting Formik field value when dropdown selection changes
-                              setFieldValue("location", selectedOption.value);
+                              setFieldValue("edit.location", selectedOption);
+
+                              console.log(selectedOption);
                             }}
                           />
                         </div>
                       </div>
+                      {values.edit.location === "Online" ? (
+                        <div className=" flex gap-4 items-start">
+                          <label
+                            className="flex justify-end w-2/6"
+                            htmlFor="edit.meetingLink"
+                          >
+                            Meeting Link
+                            <span className="text-red-600 font-semibold">
+                              *
+                            </span>
+                          </label>
+                          <div className="w-4/6">
+                            <Field
+                              type="url"
+                              id="edit.meetingLink"
+                              name="meetingLink"
+                              className={`border ${
+                                errors.edit?.meetingLink &&
+                                touched.edit?.meetingLink
+                                  ? "border-red-400"
+                                  : "border-placeholderGray"
+                              } rounded w-full p-2`}
+                              placeholder="Enter the meeting link"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        values.edit.location && (
+                          <div className="mt-4 flex gap-4 items-start">
+                            <label
+                              className="flex justify-end w-2/6"
+                              htmlFor="edit.address"
+                            >
+                              Address
+                              <span className="text-red-600 font-semibold">
+                                *
+                              </span>
+                            </label>
+                            <div className="w-4/6">
+                              <Field
+                                type="text"
+                                id="edit.address"
+                                name="address"
+                                className={`border ${
+                                  errors.edit?.address && touched.edit?.address
+                                    ? "border-red-400"
+                                    : "border-placeholderGray"
+                                } rounded w-full p-2`}
+                                placeholder="Enter the event address"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                              />
+                            </div>
+                          </div>
+                        )
+                      )}
                     </div>
+
                     <div>
                       <p className="text-xl w-2/6 font-semibold text-end">
                         Additional Information
@@ -452,16 +528,18 @@ const NewEvent = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
                 {currentStep === 1 && (
-                  <div className="flex gap-8 mx-auto max-w-3xl justify-between">
+                  <motion.div
+                    initial={{ opacity: 0, x: 150 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="flex gap-8 mx-auto max-w-4xl justify-between"
+                  >
                     <div>
                       <label htmlFor="image">
-                        <p className="text-xl font-medium mb-2">
-                          Upload Image
-                        </p>
+                        <p className="text-xl font-medium mb-2">Upload Image</p>
                       </label>
                       <input
                         id="image"
@@ -494,33 +572,300 @@ const NewEvent = () => {
                         />
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                 )}
 
                 {currentStep === 2 && (
-                  <div>
-                    <h2 className="text-lg font-bold">Ticketing</h2>
-                    <Field
-                      name="ticketing.tickets"
-                      type="number"
-                      placeholder="Number of Tickets"
-                      className="block w-full p-2 mt-4 border border-placeholderGray rounded"
-                    />
-                    <ErrorMessage
-                      name="ticketing.tickets"
-                      component="div"
-                      className="text-red-500"
-                    />
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 150 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="max-w-4xl grid gap-8 mx-auto"
+                  >
+                    <div>
+                      <p className="text-xl font-medium mb-4">
+                        What type of event are you running?
+                      </p>
+                      <div className="flex gap-4">
+                        <label className="aspect-video flex flex-col peer-checked:border-appNavyBlue peer-checked:ring-2 peer-checked:ring-appNavyBlue items-center justify-center gap-1 p-4 border rounded-md cursor-pointer w-72 text-center transition-colors hover:bg-gray-100 focus-within:ring-2 focus-within:ring-appNavyBlue">
+                          <Field
+                            type="radio"
+                            name="ticketing.entryType"
+                            value="ticketed"
+                            className="peer sr-only"
+                          />
+                          <Icon
+                            className="text-6xl"
+                            icon={"ion:ticket-outline"}
+                          />
+                          <span className="font-medium text-gray-800">
+                            Ticketed Event
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            My event requires tickets for entry
+                          </span>
+                        </label>
+
+                        <label className="aspect-video flex flex-col peer-checked:border-appNavyBlue peer-checked:ring-2 peer-checked:ring-appNavyBlue items-center justify-center gap-1 p-4 border rounded-md cursor-pointer w-72 text-center transition-colors hover:bg-gray-100 focus-within:ring-2 focus-within:ring-appNavyBlue">
+                          <Field
+                            type="radio"
+                            name="ticketing.entryType"
+                            value="free"
+                            className="peer sr-only"
+                          />
+                          <Icon
+                            className="text-6xl"
+                            icon={"fluent-emoji-high-contrast:free-button"}
+                          />
+                          <span className="font-medium text-gray-800">
+                            Free Event
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            I’m running a free event
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-xl font-medium mb-4">
+                        What tickets are you selling?
+                      </p>
+                      <FieldArray name="ticketing.tickets">
+                        {({ remove, push }) => (
+                          <>
+                            <div className="grid gap-2">
+                              {values.ticketing?.tickets?.map((_, index) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center w-full gap-4 "
+                                >
+                                  <div className="w-1/3">
+                                    <p className="text-sm font-medium">
+                                      Ticket name
+                                    </p>
+                                    <Field
+                                      name={`ticketing.tickets[${index}].name`}
+                                      type="text"
+                                      placeholder="Ticket Name e.g. General Admission"
+                                      className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
+                                        errors.ticketing?.tickets?.[index]
+                                          ?.name &&
+                                        touched.ticketing?.tickets?.[index]
+                                          ?.name
+                                          ? "border-red-400 border-2"
+                                          : "border-placeholderGray"
+                                      } rounded`}
+                                    />
+                                  </div>
+                                  <div className="w-1/3">
+                                    <p className="text-sm font-medium">Price</p>
+                                    <Field
+                                      name={`ticketing.tickets[${index}].price`}
+                                      type="text"
+                                      placeholder="0.00"
+                                      className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
+                                        errors.ticketing?.tickets?.[index]
+                                          ?.price &&
+                                        touched.ticketing?.tickets?.[index]
+                                          ?.price
+                                          ? "border-red-400 border-2"
+                                          : "border-placeholderGray"
+                                      } rounded`}
+                                    />
+                                  </div>
+                                  <div className="w-1/3">
+                                    <p className="text-sm font-medium">
+                                      No. Available
+                                    </p>
+                                    <Field
+                                      name={`ticketing.tickets[${index}].available`}
+                                      type="number"
+                                      placeholder="10"
+                                      className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
+                                        errors.ticketing?.tickets?.[index]
+                                          ?.available &&
+                                        touched.ticketing?.tickets?.[index]
+                                          ?.available
+                                          ? "border-red-400 border-2"
+                                          : "border-placeholderGray"
+                                      } rounded`}
+                                    />
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => remove(index)}
+                                    className="text-red-600 text-xl"
+                                  >
+                                    <Icon icon={"gg:remove"} />
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                push({
+                                  name: "",
+                                  price: "",
+                                  available: "",
+                                })
+                              }
+                              className="text-white p-2 w-full bg-appDarkText flex justify-center gap-2 items-center rounded-md mt-2 text-sm"
+                            >
+                              New Ticket Type
+                              <Icon icon={"gg:add"} />
+                            </button>
+                          </>
+                        )}
+                      </FieldArray>
+                    </div>
+                  </motion.div>
                 )}
 
                 {currentStep === 3 && (
-                  <div>
-                    <h2 className="text-lg font-bold">Review</h2>
-                    <pre className="p-4 bg-gray-100 rounded">
-                      {JSON.stringify(values, null, 2)}
-                    </pre>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    className="p-6 bg-white rounded-lg max-w-4xl mx-auto shadow-md"
+                  >
+                    {/* Event Banner */}
+                    <div className="w-full h-72 bg-gray-300 rounded-lg overflow-hidden flex justify-center items-center">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={preview}
+                        alt=""
+                      />
+                    </div>
+
+                    {/* Event Title */}
+                    <p className="mt-4 text-2xl font-bold">
+                      {values.edit.title || "Event Title"}
+                    </p>
+
+                    {/* Date and Time / Ticket Information */}
+                    <div className="mt-4 flex flex-col md:flex-row justify-between">
+                      {/* Date and Time */}
+                      <div className="flex-1">
+                        <p className="text-lg font-semibold">Date and Time</p>
+                        <div className="mt-2">
+                          {values.edit.sessions &&
+                          values.edit.sessions.length > 0 ? (
+                            values.edit.sessions.map((session, index) => (
+                              <div key={index} className="mb-4">
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-gray-600">
+                                    &#128197;
+                                  </span>
+                                  <p>{session.date || "Day, Date"}</p>
+                                </div>
+                                <div className="flex items-center space-x-2 mt-1">
+                                  <span className="text-gray-600">
+                                    &#128337;
+                                  </span>
+                                  <p>{session.startTime || "Time"}</p>
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div>
+                              <div className="flex items-center space-x-2">
+                                <span className="text-gray-600">&#128197;</span>
+                                <p>Day, Date</p>
+                              </div>
+                              <div className="flex items-center space-x-2 mt-1">
+                                <span className="text-gray-600">&#128337;</span>
+                                <p>Time</p>
+                              </div>
+                            </div>
+                          )}
+                          <a href="#" className="text-blue-600 mt-2 block">
+                            + Add to Calendar
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Ticket Information */}
+                      <div className="flex-1 md:ml-6 mt-6 md:mt-0">
+                        <p className="text-lg font-semibold">
+                          Ticket Information
+                        </p>
+                        <div className="mt-2">
+                          {values.ticketing.tickets &&
+                          values.ticketing.tickets.length > 0 ? (
+                            values.ticketing.tickets.map((ticket, index) => (
+                              <div key={index} className="mb-4">
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-gray-600">
+                                    &#127903;
+                                  </span>
+                                  <p>
+                                    {ticket.name || "Type"}:{" "}
+                                    {ticket.price
+                                      ? `${ticket.price}/ticket`
+                                      : "Price/ticket"}
+                                  </p>
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div>
+                              <div className="flex items-center space-x-2">
+                                <span className="text-gray-600">&#127903;</span>
+                                <p>Ticket Type: Price /ticket</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Location */}
+                    <div className="mt-6">
+                      <p className="text-lg font-semibold">Location</p>
+                      <div className="mt-2">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-gray-600">&#128205;</span>
+                          <p>
+                            {values.edit.address || "Address"},{" "}
+                            {values.edit.location || "Location"}
+                          </p>
+                        </div>
+                        <div className="mt-4 w-full h-48 bg-gray-300 rounded-lg flex justify-center items-center">
+                          <p className="text-gray-500">Map Placeholder</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hosted By */}
+                    <div className="mt-6">
+                      <p className="text-lg font-semibold">Hosted by</p>
+                      <div className="mt-4 flex items-center">
+                        <div className="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0"></div>
+                        <div className="ml-4">
+                          <p className="font-semibold">
+                            {user?.name || "Host name"}
+                          </p>
+                          <div className="flex mt-2 space-x-2">
+                            <button className="px-4 py-1 text-sm bg-gray-200 rounded">
+                              Contact
+                            </button>
+                            <button className="px-4 py-1 text-sm bg-blue-600 text-white rounded">
+                              + Follow
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Event Description */}
+                    <div className="mt-6">
+                      <p className="text-lg font-semibold">Event Description</p>
+                      <p className="mt-2 text-gray-700">
+                        {values.edit.description ||
+                          "Lorem ipsum dolor sit amet consectetur. Eget vulputate sociis sit urna sit aliquet. Vivamus facilisis diam libero dolor volutpat diam eu. Quis a id posuere etiamat enim vivamus..."}
+                      </p>
+                    </div>
+                  </motion.div>
                 )}
 
                 {/* Navigation Buttons */}
@@ -536,7 +881,6 @@ const NewEvent = () => {
                   {currentStep === steps.length - 1 ? (
                     <button
                       type="submit"
-                      disabled={isSubmitting}
                       className="px-4 py-2 bg-appNavyBlue  text-white rounded"
                     >
                       Submit
@@ -544,7 +888,10 @@ const NewEvent = () => {
                   ) : (
                     <button
                       type="button"
-                      onClick={nextStep}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        nextStep();
+                      }}
                       className="px-4 py-2 bg-appNavyBlue  text-white rounded"
                     >
                       Save & Continue

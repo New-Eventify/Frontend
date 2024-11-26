@@ -1,16 +1,16 @@
 import { Request, Response, NextFunction } from "express";
-import { 
-    createEvent, 
-    fetchEventsByUserId, 
-    updateEvent,
-    deleteEvent
+import {
+  createEvent,
+  fetchEventsByUserId,
+  updateEvent,
+  deleteEvent,
 } from "../services/eventService"; // Import the new service
 import { authenticate } from "../middlewares/authMiddleware";
 import logger from "../utils/logger";
 import { uploadToSupabase } from "../utils/supabaseUploader";
 
 interface CustomRequest extends Request {
-  user?: { id: string; email: string };
+  user?: { id: string; email: string; file?: string };
 }
 
 // Controller for creating an event
@@ -20,7 +20,8 @@ export const create = async (
   next: NextFunction
 ): Promise<void> => {
   authenticate(req, res, async () => {
-    const { title, event_category, event_type, description, imageUrl } = req.body;
+    const { title, event_category, event_type, description, imageUrl } =
+      req.body;
 
     logger.info("Incoming request to create event:", req.body);
 
@@ -33,42 +34,61 @@ export const create = async (
 
     // Validate required fields
     if (!title || !event_category || !event_type || !imageUrl) {
-      return res
-        .status(400)
-        .json({ error: "Missing required fields: title, event_category, imageUrl or event_type." });
+      return res.status(400).json({
+        error:
+          "Missing required fields: title, event_category, imageUrl or event_type.",
+      });
     }
 
     // Venue Validation
     logger.info("Venue details before validation:", venue);
 
     if (!["on-site", "online"].includes(venue.location?.trim())) {
+      return res.status(400).json({
+        error: "Invalid venue location. Must be 'on-site' or 'online'.",
+      });
+    }
+
+    if (
+      venue.location === "on-site" &&
+      (!venue.address || venue.address.trim() === "")
+    ) {
       return res
         .status(400)
-        .json({ error: "Invalid venue location. Must be 'on-site' or 'online'." });
+        .json({ error: "Address is required for 'on-site' events." });
     }
 
-    if (venue.location === "on-site" && (!venue.address || venue.address.trim() === "")) {
-      return res.status(400).json({ error: "Address is required for 'on-site' events." });
-    }
-
-    if (venue.location === "online" && (!venue.meetingLink || venue.meetingLink.trim() === "")) {
-      return res.status(400).json({ error: "Meeting link is required for 'online' events." });
+    if (
+      venue.location === "online" &&
+      (!venue.meetingLink || venue.meetingLink.trim() === "")
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Meeting link is required for 'online' events." });
     }
 
     // Validate tickets array
     if (!Array.isArray(tickets) || tickets.length === 0) {
-      return res.status(400).json({ error: "At least one ticket is required." });
+      return res
+        .status(400)
+        .json({ error: "At least one ticket is required." });
     }
 
     //Validate Admissions array
-    if (!Array.isArray(tickets[0].admissions) || tickets[0].admissions.length === 0) {
-      return res.status(400).json({ error: "At least one admission is required." });
+    if (
+      !Array.isArray(tickets[0].admissions) ||
+      tickets[0].admissions.length === 0
+    ) {
+      return res
+        .status(400)
+        .json({ error: "At least one admission is required." });
     }
 
-    
     // Validate sessions array
     if (!Array.isArray(sessions) || sessions.length === 0) {
-      return res.status(400).json({ error: "At least one session is required." });
+      return res
+        .status(400)
+        .json({ error: "At least one session is required." });
     }
 
     // Validate user authentication
@@ -136,71 +156,89 @@ export const getEventsByUserId = async (
   });
 };
 
-export const update = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
-    authenticate(req, res, async () => {
-      const { id } = req.params; // Extract event ID from the request parameters
-      const data = req.body; // Extract data to update from the request body
-  
-      // Validate user authentication
-      if (!req.user) {
-        return res.status(401).json({ error: "Unauthorized. Please log in." });
-      }
-  
-      try {
-        // Call the service to update the event
-        const updatedEvent = await updateEvent(id, data, req.user.id);
-  
-        res.status(200).json({ event: updatedEvent });
-        logger.info("Event updated successfully:", updatedEvent);
-      } catch (err: any) {
-        logger.error("Failed to update event:", err);
-        res.status(500).json({
-          error: "Failed to update event",
-          details: err.message,
-        });
-      }
-    });
+export const update = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  authenticate(req, res, async () => {
+    const { id } = req.params; // Extract event ID from the request parameters
+    const data = req.body; // Extract data to update from the request body
+
+    // Validate user authentication
+    if (!req.user) {
+      return res.status(401).json({ error: "Unauthorized. Please log in." });
+    }
+
+    try {
+      // Call the service to update the event
+      const updatedEvent = await updateEvent(id, data, req.user.id);
+
+      res.status(200).json({ event: updatedEvent });
+      logger.info("Event updated successfully:", updatedEvent);
+    } catch (err: any) {
+      logger.error("Failed to update event:", err);
+      res.status(500).json({
+        error: "Failed to update event",
+        details: err.message,
+      });
+    }
+  });
 };
 
-export const deleteEventById = async (req: CustomRequest, res: Response): Promise<void> => {
-    authenticate(req, res, async () => {
-      const { eventId } = req.params;
-  
-      if (!req.user) {
-        res.status(401).json({ error: "Unauthorized. Please log in." });
-        return;
-      }
-  
-      try {
-        const result = await deleteEvent(eventId, req.user.id); // Ensure user ownership
-        res.status(200).json(result);
-        logger.info("Event deleted successfully", result);
-      } catch (err: any) {
-        logger.error("Failed to delete event", err);
-        res.status(500).json({ error: "Failed to delete event", details: err.message });
-      }
-    });
+export const deleteEventById = async (
+  req: CustomRequest,
+  res: Response
+): Promise<void> => {
+  authenticate(req, res, async () => {
+    const { eventId } = req.params;
+
+    if (!req.user) {
+      res.status(401).json({ error: "Unauthorized. Please log in." });
+      return;
+    }
+
+    try {
+      const result = await deleteEvent(eventId, req.user.id); // Ensure user ownership
+      res.status(200).json(result);
+      logger.info("Event deleted successfully", result);
+    } catch (err: any) {
+      logger.error("Failed to delete event", err);
+      res
+        .status(500)
+        .json({ error: "Failed to delete event", details: err.message });
+    }
+  });
 };
 
-export const uploadEventImage = async (req: CustomRequest, res: Response): Promise<void> => {
-    authenticate(req, res, async () => {
-        // const { eventId } = req.params;
-    
-        if (!req.file) {
-        return res.status(400).json({ error: "No file uploaded" });
-        }
-    
-        try {
-        // Upload the image to Supabase
-        const imageUrl = await uploadToSupabase(req.file.buffer, req.file.originalname, "event-images");
-    
-        // Update the event with the uploaded image URL
-        
-        res.status(200).json(imageUrl);
-        logger.info("Image uploaded successfully");
-        } catch (err: any) {
-        logger.error("Failed to upload event image:", err);
-        res.status(500).json({ error: "Failed to upload event image", details: err.message });
-        }
-    })
+export const uploadEventImage = async (
+  req: CustomRequest,
+  res: Response
+): Promise<void> => {
+  authenticate(req, res, async () => {
+    // const { eventId } = req.params;
+
+    if (!req.user?.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    try {
+      // Upload the image to Supabase
+      const imageUrl = await uploadToSupabase(
+        req.user?.file.buffer,
+        req.user?.file.originalname,
+        "event-images"
+      );
+
+      // Update the event with the uploaded image URL
+
+      res.status(200).json(imageUrl);
+      logger.info("Image uploaded successfully");
+    } catch (err: any) {
+      logger.error("Failed to upload event image:", err);
+      res
+        .status(500)
+        .json({ error: "Failed to upload event image", details: err.message });
+    }
+  });
 };
