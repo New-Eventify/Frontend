@@ -10,7 +10,9 @@ const Navbar = () => {
     <div className="w-full flex justify-between py-3 px-5 bg-appNavyBlue">
       <Logo />
       <div className="hidden md:flex items-center gap-4">
-        <Link className="text-white">Create Event</Link>
+        <Link to={"/create-event"} className="text-white">
+          Create Event
+        </Link>
         <Link
           onClick={() => dispatch(setIsSignUp(false))}
           to={"/auth"}
