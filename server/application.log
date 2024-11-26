@@ -1462,3 +1462,21 @@ Null constraint violation on the fields: (`currency`)
 2024-11-25T16:49:05.603Z [info]: Events fetched successfully:
 2024-11-25T16:49:49.158Z [info]: User authenticated successfully
 2024-11-25T16:49:51.058Z [info]: Event deleted successfully Event deleted successfully
+2024-11-26T00:13:07.083Z [info]: User authenticated successfully
+2024-11-26T00:13:14.412Z [info]: Image uploaded successfully
+2024-11-26T12:09:19.587Z [info]: User registered successfully
+2024-11-26T12:10:13.789Z [info]: User authenticated successfully
+2024-11-26T12:10:13.794Z [info]: Incoming request to create event:
+2024-11-26T12:10:13.938Z [info]: Venue details before validation:
+2024-11-26T12:10:22.490Z [info]: Event created successfully:
+2024-11-26T12:13:55.784Z [info]: User registered successfully for event:
+2024-11-26T12:17:08.809Z [info]: User authenticated successfully
+2024-11-26T12:17:08.834Z [info]: Fetching events for userId: 9a2fd938-822d-4572-9010-c384603f44db
+2024-11-26T12:17:15.637Z [info]: Events fetched successfully:
+2024-11-26T12:32:35.488Z [info]: User authenticated successfully
+2024-11-26T12:32:35.492Z [info]: Fetching events for userId: 9a2fd938-822d-4572-9010-c384603f44db
+2024-11-26T12:32:43.839Z [info]: Events fetched successfully:
+2024-11-26T12:35:08.292Z [info]: User registered successfully for event:
+2024-11-26T12:38:44.450Z [info]: User authenticated successfully
+2024-11-26T12:38:44.464Z [info]: Fetching events for userId: 9a2fd938-822d-4572-9010-c384603f44db
+2024-11-26T12:38:53.892Z [info]: Events fetched successfully:

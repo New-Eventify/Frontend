@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerSpecs from './src/docs/swagger.json';
 import userRoutes from './src/routes/userRoutes';
 import eventRoutes from './src/routes/eventRoutes';
+import registrationRoutes from './src/routes/registrationRoutes';
 import errorHandler from './src/middlewares/errorHandler';
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/registrations', registrationRoutes);
 
 // Use error handler middleware
 app.use(errorHandler);

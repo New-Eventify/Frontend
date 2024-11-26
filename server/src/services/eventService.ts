@@ -176,7 +176,16 @@ export const fetchEventsByUserId = async (userId: string) => {
             admissions: true,
           },
         },
-      },
+        registrations: {
+          include: {
+            admissions: {
+              include: { 
+                admission: true 
+              }, // Include admission details for registrants
+            },
+          },
+        },
+      }
     });
 
     if (events.length === 0) {
