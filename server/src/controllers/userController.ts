@@ -13,7 +13,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const { email, password, name } = req.body;
     const result = await signUp(email, password, name);
     res.status(201).json(result);
-    logger.info('User registered successfully');
+    logger.info("User registered successfully");
   } catch (error: any) {
     let formattedError;
 
@@ -28,14 +28,14 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     } else {
       // For generic errors
       formattedError = {
-        validation: 'generic',
-        code: 'unknown_error',
-        message: error.message || 'An error occurred.',
+        validation: "generic",
+        code: "unknown_error",
+        message: error.message || "An error occurred.",
       };
     }
 
     // Log the full error
-    logger.error('Failed to register user', error);
+    logger.error("Failed to register user", error);
 
     // Return structured error response
     res.status(400).json(formattedError);
@@ -47,10 +47,10 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
     const result = await signIn(email, password);
     res.status(200).json(result);
-    logger.info('User logged in successfully');
+    logger.info("User logged in successfully");
   } catch (error: Error | any) {
     res.status(400).json({ error: error.message });
-    logger.error('Failed to log in user', error);
+    logger.error("Failed to log in user", error);
   }
 };
 
@@ -61,10 +61,10 @@ interface CustomRequest extends Request {
 
 export const signOut = async (req: CustomRequest, res: Response): Promise<void> => {
   authenticate(req, res, async () => {
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization?.split(" ")[1];
 
     if (!token) {
-      res.status(400).json({ error: 'Token is required to sign out' });
+      res.status(400).json({ error: "Token is required to sign out" });
       return;
     }
 
@@ -72,13 +72,13 @@ export const signOut = async (req: CustomRequest, res: Response): Promise<void> 
       // Check if the token is already blacklisted
       const isBlacklisted = await isTokenBlacklisted(token);
       if (isBlacklisted) {
-        res.status(400).json({ error: 'Token is already blacklisted' });
+        res.status(400).json({ error: "Token is already blacklisted" });
         return;
       }
 
       const decodedToken: any = jwt.decode(token);
       if (!decodedToken || !decodedToken.exp) {
-        res.status(400).json({ error: 'Invalid token' });
+        res.status(400).json({ error: "Invalid token" });
         return;
       }
 
@@ -86,7 +86,7 @@ export const signOut = async (req: CustomRequest, res: Response): Promise<void> 
       if (req.user) {
         await prisma.user.update({
           where: { id: req.user.id },
-          data: { lastSignOutAt: new Date() }
+          data: { lastSignOutAt: new Date() },
         });
       }
 
@@ -95,11 +95,13 @@ export const signOut = async (req: CustomRequest, res: Response): Promise<void> 
         await blacklistToken(token, expiresIn);
       }
 
-      res.status(200).json({ message: 'Successfully signed out' });
-      logger.info('User signed out successfully, token blacklisted');
+      res.status(200).json({ message: "Successfully signed out" });
+      logger.info("User signed out successfully, token blacklisted");
     } catch (err: any) {
-      logger.error('Failed to sign out', err);
-      res.status(500).json({ error: 'Failed to sign out', details: err.message });
+      logger.error("Failed to sign out", err);
+      res
+        .status(500)
+        .json({ error: "Failed to sign out", details: err.message });
     }
   });
 };
