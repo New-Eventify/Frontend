@@ -4,9 +4,11 @@ import Logo from "../assets/Logo";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleSignUp } from "../redux/reducers/authViewSlice";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "../context/AuthContext";
+import { ClipLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 function LoginSignup() {
   const isSignUp = useSelector((state) => state.authView.isSignUp);
@@ -25,7 +27,7 @@ function LoginSignup() {
     name: Yup.string().required("name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
+      .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
   });
 
@@ -33,11 +35,19 @@ function LoginSignup() {
     try {
       if (isSignUp) {
         await signup(values.name, values.email, values.password);
+        toast.success("Sign up successful. Login to continue");
       } else {
-        await login(values.email, values.password);
+        const res = await login(values.email, values.password);
+        if (res == "success") {
+          toast.success("Welcome back");
+        } else {
+          toast.error(res);
+          console.log(res);
+        }
       }
       resetForm();
     } catch (error) {
+      toast.error("Authentication failed. Please try again.");
       console.error(
         "Authentication failed:",
         error.response?.data || error.message
@@ -51,7 +61,7 @@ function LoginSignup() {
     <div className="relative h-screen flex bg-appNavyBlue overflow-hidden">
       <div
         className={`absolute z-10 top-10 ${
-          isSignUp ? "right-8 lg:right-14" : "left-8 lg:left-14"
+          !isMobile && isSignUp ? "right-8 lg:right-14" : "left-8 lg:left-14"
         }`}
       >
         <Logo />
@@ -105,57 +115,55 @@ function LoginSignup() {
               validationSchema={isSignUp ? signupSchema : loginSchema}
               onSubmit={handleSubmit}
             >
-              {({ isSubmitting }) => (
+              {({ isSubmitting, errors }) => (
                 <Form className="flex flex-col items-center gap-4 w-full max-w-lg">
-                  <h2 className="text-3xl font-bold mb-4">
+                  <h2 className="text-3xl mb-4">
                     {isSignUp ? "Create Account" : "Log In"}
                   </h2>
                   {isSignUp && (
-                    <div>
+                    <div className="w-full">
                       <Field
                         name="name"
-                        placeholder="name"
-                        className="border w-full p-2 rounded"
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="div"
-                        className="text-red-500 text-sm"
+                        placeholder="Full Name"
+                        className={`border ${
+                          errors.name && "border-red-500"
+                        } w-full p-2 rounded`}
                       />
                     </div>
                   )}
-                  <div>
+                  <div className="w-full">
                     <Field
                       name="email"
                       type="email"
                       placeholder="Email"
-                      className="border w-full p-2 rounded"
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-red-500 text-sm"
+                      className={`border ${
+                        errors.email && "border-red-500"
+                      } w-full p-2 rounded`}
                     />
                   </div>
-                  <div>
+                  <div className="w-full">
                     <Field
                       name="password"
                       type="password"
                       placeholder="Password"
-                      className="border w-full p-2 rounded"
-                    />
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="text-red-500 text-sm"
+                      className={`border ${
+                        errors.password && "border-red-500"
+                      } w-full p-2 rounded`}
                     />
                   </div>
                   <button
                     type="submit"
-                    className="bg-appNavyBlue w-full text-white font-bold py-2 px-6 rounded hover:bg-blue-600 transition"
-                    disabled={isSubmitting}
+                    className="bg-appNavyBlue w-full text-white py-2 px-6 rounded hover:bg-appDarkText transition"
                   >
-                    {isSignUp ? "Create account" : "Login"}
+                    {!isSubmitting ? (
+                      isSignUp ? (
+                        "Create account"
+                      ) : (
+                        "Login"
+                      )
+                    ) : (
+                      <ClipLoader color="white" size={14} />
+                    )}
                   </button>
                   <p
                     className="cursor-pointer flex gap-2 text-center"
@@ -186,76 +194,125 @@ function LoginSignup() {
                     !isSignUp ? "flex" : "hidden"
                   } flex-col justify-center items-center transform -scale-x-100 backface-hidden`}
                 >
-                  <h2 className="text-2xl font-bold mb-6">Log In</h2>
-                  <form className="flex flex-col gap-4 w-3/4">
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="border p-2 rounded"
-                    />
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="border p-2 rounded"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-blue-500 text-white font-bold py-2 px-6 rounded hover:bg-blue-600 transition"
-                    >
-                      Login
-                    </button>
-                  </form>
-                  <p className="mt-4">
-                    New here?{" "}
-                    <button
-                      onClick={() => dispatch(toggleSignUp())}
-                      className="text-blue-500 hover:underline"
-                    >
-                      Create an account
-                    </button>
-                  </p>
+                  <h2 className="text-2xl mb-6">Log In</h2>
+                  <Formik
+                    initialValues={{ email: "", password: "" }}
+                    validationSchema={loginSchema}
+                    onSubmit={handleSubmit}
+                  >
+                    {({ isSubmitting, errors }) => (
+                      <>
+                        <Form className="flex items-center flex-col gap-4 w-3/4">
+                          <Field
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            className={`${
+                              errors.email && "border-red-500"
+                            }border w-full p-2 rounded`}
+                          />
+                          <Field
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            className={`${
+                              errors.password && "border-red-500"
+                            }border w-full p-2 rounded`}
+                          />
+                          <button
+                            type="submit"
+                            className="w-full bg-appNavyBlue text-white py-2 px-6 h-10 rounded hover:bg-gray-200 transition"
+                          >
+                            {!isSubmitting ? (
+                              "Log in"
+                            ) : (
+                              <ClipLoader color="white" size={14} />
+                            )}
+                          </button>
+                        </Form>
+                        <p className="mt-4 text-sm text-center">
+                          New here? <br />
+                          <span
+                            onClick={() => dispatch(toggleSignUp())}
+                            className="text-appbg-appNavyBlue hover:underline"
+                          >
+                            Create an account
+                          </span>
+                        </p>
+                      </>
+                    )}
+                  </Formik>
                 </div>
-
                 {/* Back Side: Create account */}
                 <div
-                  className={`absolute inset-0 w-full h-full bg-blue-500 rounded-xl text-white shadow-lg ${
+                  className={`absolute inset-0 w-full h-full bg-white rounded-xl text-appNavyBlue shadow-lg ${
                     !isSignUp ? "hidden" : "flex"
                   } flex-col justify-center items-center backface-hidden transform rotateY-180`}
                 >
-                  <h2 className="text-2xl font-bold mb-6">Create account</h2>
-                  <form className="flex flex-col gap-4 w-3/4">
-                    <input
-                      type="text"
-                      placeholder="name"
-                      className="border p-2 rounded text-black"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="border p-2 rounded text-black"
-                    />
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="border p-2 rounded text-black"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-white text-blue-500 font-bold py-2 px-6 rounded hover:bg-gray-200 transition"
-                    >
-                      Create account
-                    </button>
-                  </form>
-                  <p className="mt-4">
-                    Already have an account?{" "}
-                    <button
-                      onClick={() => dispatch(toggleSignUp())}
-                      className="text-white underline"
-                    >
-                      Log in
-                    </button>
-                  </p>
+                  <h2 className="text-2xl mb-6">Create account</h2>
+                  <Formik
+                    initialValues={{ name: "", email: "", password: "" }}
+                    validationSchema={signupSchema}
+                    onSubmit={handleSubmit}
+                  >
+                    {({ isSubmitting, errors, touched }) => (
+                      <>
+                        <Form className="flex items-center flex-col gap-4 w-3/4">
+                          <Field
+                            name="name"
+                            type="text"
+                            placeholder="Full Name"
+                            className={`${
+                              errors.name && touched.name
+                                ? "border-red-500"
+                                : ""
+                            } border w-full p-2 rounded`}
+                          />
+                          <Field
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            className={`${
+                              errors.email && touched.email
+                                ? "border-red-500"
+                                : ""
+                            } border w-full p-2 rounded`}
+                          />
+                          <Field
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            className={`${
+                              errors.password && touched.password
+                                ? "border-red-500"
+                                : ""
+                            } border w-full p-2 rounded`}
+                          />
+                          <button
+                            type="submit"
+                            className="w-full bg-appNavyBlue text-white py-2 px-6 h-10 rounded hover:bg-gray-200 transition"
+                          >
+                            {!isSubmitting ? (
+                              "Create account"
+                            ) : (
+                              <ClipLoader color="white" size={14} />
+                            )}
+                          </button>
+                        </Form>
+                        <p className="mt-4 text-sm">
+                          Already have an account?{" "}
+                          <span
+                            onClick={() => dispatch(toggleSignUp())}
+                            className="text-appNavyBlue hover:underline"
+                          >
+                            Log in
+                          </span>
+                        </p>
+                      </>
+                    )}
+                  </Formik>
                 </div>
+                ;
               </motion.div>
             </div>
           </div>

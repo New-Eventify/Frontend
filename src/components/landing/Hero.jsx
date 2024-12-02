@@ -15,6 +15,9 @@ import {
 import { useEffect } from "react";
 import { useMemo } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useSelector } from "react-redux";
+import { selectMenu } from "../../redux/reducers/userMenuSlice";
+import UserMenu from "../UserMenu";
 
 const Hero = () => {
   const images = useMemo(
@@ -63,6 +66,7 @@ const Hero = () => {
     setLocation(loc);
     setIsDropdown(false);
   };
+  const menu = useSelector(selectMenu);
 
   return (
     <div className="h-screen relative flex justify-center items-center p-4">
@@ -72,6 +76,7 @@ const Hero = () => {
         src={images[index]}
         alt=""
       />
+      {menu && <UserMenu />}
 
       <div className="relative w-max container mx-auto">
         <motion.h1

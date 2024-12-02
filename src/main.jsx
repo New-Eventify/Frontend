@@ -10,14 +10,14 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
+        <AuthProvider>
           <AnimatePresence>
             <App />
           </AnimatePresence>
-        </BrowserRouter>
-      </AuthProvider>
-    </Provider>
+        </AuthProvider>
+      </Provider>
+    </BrowserRouter>
   </StrictMode>
 );

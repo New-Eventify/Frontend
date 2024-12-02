@@ -1,29 +1,37 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useContext } from "react";
 import axiosInstance from "./axios";
-import Proptypes from "prop-types";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { setUser, resetUser, selectToken } from "../redux/reducers/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { setIsSignUp } from "../redux/reducers/authViewSlice";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("authToken"));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector(selectToken);
 
   const login = async (email, password) => {
+    let message = "An error occur";
     try {
-      const response = await axiosInstance.post("/users/login", {
+      const response = await axiosInstance.post("/users/signin", {
         email,
         password,
       });
-      const { token, user } = response.data;
+      const { user, token } = response.data;
 
-      setUser(user);
-      setToken(token);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      // Update Redux state and navigate
+      dispatch(setUser({ user, token }));
+      navigate("/");
+      message = "success";
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
       throw error;
     }
+    return message;
   };
 
   const signup = async (name, email, password) => {
@@ -33,27 +41,33 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      const { token, user } = response.data;
+      const { user, token } = response.data;
 
-      setUser(user);
-      setToken(token);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      // Update Redux state
+      dispatch(setUser({ user, token }));
+      dispatch(setIsSignUp(false));
     } catch (error) {
       console.error("Signup failed:", error.response?.data || error.message);
       throw error;
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+  const logout = async () => {
+    // Clear Redux state
+    try {
+      await axiosInstance.post("/users/signout", token);
+      dispatch(resetUser());
+      navigate("/auth");
+    } catch (error) {
+      console.error(
+        "Unable to sign out:",
+        error.response?.data || error.message
+      );
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, signup, logout }}>
+    <AuthContext.Provider value={{ login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -69,5 +83,5 @@ export const useAuth = () => {
 };
 
 AuthProvider.propTypes = {
-  children: Proptypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
