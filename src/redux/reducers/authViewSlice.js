@@ -18,4 +18,5 @@ const authViewSlice = createSlice({
 });
 
 export const { toggleSignUp, setIsSignUp } = authViewSlice.actions;
+export const selectIsSignUp = initialState.isSignUp;
 export default authViewSlice.reducer;

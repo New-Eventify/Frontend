@@ -8,11 +8,15 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { GoBack } from "../hooks/GoBack";
 import Dropdown from "../components/Dropdown";
 import { useAuth } from "../context/AuthContext";
+import { useSelector } from "react-redux";
+import { selectMenu } from "../redux/reducers/userMenuSlice";
+import UserMenu from "../components/UserMenu";
 
 const NewEvent = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [preview, setPreview] = useState(null);
   const { user } = useAuth();
+  const menu = useSelector(selectMenu);
 
   // Steps array
   const steps = ["Edit", "Banner", "Ticketing", "Review"];
@@ -38,11 +42,11 @@ const NewEvent = () => {
     banner: null,
     ticketing: {
       entryType: "",
+      available: "",
       tickets: [
         {
           name: "",
           price: "",
-          available: "",
         },
       ],
     },
@@ -86,11 +90,11 @@ const NewEvent = () => {
     Yup.object({
       ticketing: Yup.object({
         entryType: Yup.string().required("ticketed"),
+        available: Yup.number().positive("Must be a positive number"),
         tickets: Yup.array().of(
           Yup.object({
             name: Yup.string().required("Name of Ticket"),
             price: Yup.string().required("Price is required"),
-            available: Yup.number().positive("Must be a positive number"),
           })
         ),
       }),
@@ -169,7 +173,8 @@ const NewEvent = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen p-8 text-appNavyBlue">
+      <div className="min-h-screen relative p-8 text-appNavyBlue">
+        {menu && <UserMenu />}
         <div className="flex text-4xl font-semibold items-center gap-3 mb-12">
           <button onClick={GoBack}>
             <Icon icon={"ep:back"} />
@@ -196,7 +201,8 @@ const NewEvent = () => {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="relative z-10 flex flex-col items-center"
+                onClick={() => setCurrentStep(index)}
+                className="relative z-10 cursor-pointer flex flex-col items-center"
               >
                 <motion.div
                   className={`w-8 h-8 rounded-full ${
@@ -228,14 +234,7 @@ const NewEvent = () => {
             validationSchema={validationSchemas[currentStep]}
             onSubmit={onSubmit}
           >
-            {({
-              values,
-              setFieldValue,
-              errors,
-              touched,
-              handleBlur,
-              handleChange,
-            }) => (
+            {({ values, setFieldValue, errors, touched }) => (
               <Form className="mt-8 w-full">
                 {currentStep === 0 && (
                   <motion.div
@@ -463,8 +462,6 @@ const NewEvent = () => {
                                   : "border-placeholderGray"
                               } rounded w-full p-2`}
                               placeholder="Enter the meeting link"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
                             />
                           </div>
                         </div>
@@ -484,15 +481,13 @@ const NewEvent = () => {
                               <Field
                                 type="text"
                                 id="edit.address"
-                                name="address"
+                                name="edit.address"
                                 className={`border ${
                                   errors.edit?.address && touched.edit?.address
                                     ? "border-red-400"
                                     : "border-placeholderGray"
                                 } rounded w-full p-2`}
                                 placeholder="Enter the event address"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
                               />
                             </div>
                           </div>
@@ -609,6 +604,25 @@ const NewEvent = () => {
                           <Field
                             type="radio"
                             name="ticketing.entryType"
+                            value="hybrid"
+                            className="peer sr-only"
+                          />
+                          <Icon
+                            className="text-6xl"
+                            icon={"ion:ticket-outline"}
+                          />
+                          <span className="font-medium text-gray-800">
+                            Hybrid Event
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            My event has free packages as well as paid
+                          </span>
+                        </label>
+
+                        <label className="aspect-video flex flex-col peer-checked:border-appNavyBlue peer-checked:ring-2 peer-checked:ring-appNavyBlue items-center justify-center gap-1 p-4 border rounded-md cursor-pointer w-72 text-center transition-colors hover:bg-gray-100 focus-within:ring-2 focus-within:ring-appNavyBlue">
+                          <Field
+                            type="radio"
+                            name="ticketing.entryType"
                             value="free"
                             className="peer sr-only"
                           />
@@ -625,100 +639,102 @@ const NewEvent = () => {
                         </label>
                       </div>
                     </div>
-
                     <div>
                       <p className="text-xl font-medium mb-4">
-                        What tickets are you selling?
+                        How many tickets are you selling?
                       </p>
-                      <FieldArray name="ticketing.tickets">
-                        {({ remove, push }) => (
-                          <>
-                            <div className="grid gap-2">
-                              {values.ticketing?.tickets?.map((_, index) => (
-                                <div
-                                  key={index}
-                                  className="flex items-center w-full gap-4 "
-                                >
-                                  <div className="w-1/3">
-                                    <p className="text-sm font-medium">
-                                      Ticket name
-                                    </p>
-                                    <Field
-                                      name={`ticketing.tickets[${index}].name`}
-                                      type="text"
-                                      placeholder="Ticket Name e.g. General Admission"
-                                      className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
-                                        errors.ticketing?.tickets?.[index]
-                                          ?.name &&
-                                        touched.ticketing?.tickets?.[index]
-                                          ?.name
-                                          ? "border-red-400 border-2"
-                                          : "border-placeholderGray"
-                                      } rounded`}
-                                    />
-                                  </div>
-                                  <div className="w-1/3">
-                                    <p className="text-sm font-medium">Price</p>
-                                    <Field
-                                      name={`ticketing.tickets[${index}].price`}
-                                      type="text"
-                                      placeholder="0.00"
-                                      className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
-                                        errors.ticketing?.tickets?.[index]
-                                          ?.price &&
-                                        touched.ticketing?.tickets?.[index]
-                                          ?.price
-                                          ? "border-red-400 border-2"
-                                          : "border-placeholderGray"
-                                      } rounded`}
-                                    />
-                                  </div>
-                                  <div className="w-1/3">
-                                    <p className="text-sm font-medium">
-                                      No. Available
-                                    </p>
-                                    <Field
-                                      name={`ticketing.tickets[${index}].available`}
-                                      type="number"
-                                      placeholder="10"
-                                      className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
-                                        errors.ticketing?.tickets?.[index]
-                                          ?.available &&
-                                        touched.ticketing?.tickets?.[index]
-                                          ?.available
-                                          ? "border-red-400 border-2"
-                                          : "border-placeholderGray"
-                                      } rounded`}
-                                    />
-                                  </div>
-                                  <button
-                                    type="button"
-                                    onClick={() => remove(index)}
-                                    className="text-red-600 text-xl"
-                                  >
-                                    <Icon icon={"gg:remove"} />
-                                  </button>
-                                </div>
-                              ))}
-                            </div>
-                            <button
-                              type="button"
-                              onClick={() =>
-                                push({
-                                  name: "",
-                                  price: "",
-                                  available: "",
-                                })
-                              }
-                              className="text-white p-2 w-full bg-appDarkText flex justify-center gap-2 items-center rounded-md mt-2 text-sm"
-                            >
-                              New Ticket Type
-                              <Icon icon={"gg:add"} />
-                            </button>
-                          </>
-                        )}
-                      </FieldArray>
+                      <Field
+                        name={`ticketing.available`}
+                        type="number"
+                        min="1"
+                        placeholder="10"
+                        className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
+                          errors.ticketing?.available &&
+                          touched.ticketing?.available
+                            ? "border-red-400 border-2"
+                            : "border-placeholderGray"
+                        } rounded`}
+                      />
                     </div>
+                    {values.ticketing.entryType !== "free" && (
+                      <div>
+                        <p className="text-xl font-medium mb-4">
+                          What tickets are you selling?
+                        </p>
+                        <FieldArray name="ticketing.tickets">
+                          {({ remove, push }) => (
+                            <>
+                              <div className="grid gap-2">
+                                {values.ticketing?.tickets?.map((_, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex items-center w-full gap-4 "
+                                  >
+                                    <div className="w-1/2">
+                                      <p className="text-sm font-medium">
+                                        Ticket name
+                                      </p>
+                                      <Field
+                                        name={`ticketing.tickets[${index}].name`}
+                                        type="text"
+                                        placeholder="Ticket Name e.g. General Admission"
+                                        className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
+                                          errors.ticketing?.tickets?.[index]
+                                            ?.name &&
+                                          touched.ticketing?.tickets?.[index]
+                                            ?.name
+                                            ? "border-red-400 border-2"
+                                            : "border-placeholderGray"
+                                        } rounded`}
+                                      />
+                                    </div>
+                                    <div className="w-1/2">
+                                      <p className="text-sm font-medium">
+                                        Price
+                                      </p>
+                                      <Field
+                                        name={`ticketing.tickets[${index}].price`}
+                                        type="text"
+                                        placeholder="0.00"
+                                        className={`block p-2 w-full accent-appNavyBlue cursor-pointer border ${
+                                          errors.ticketing?.tickets?.[index]
+                                            ?.price &&
+                                          touched.ticketing?.tickets?.[index]
+                                            ?.price
+                                            ? "border-red-400 border-2"
+                                            : "border-placeholderGray"
+                                        } rounded`}
+                                      />
+                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={() => remove(index)}
+                                      className="text-red-600 text-xl"
+                                    >
+                                      <Icon icon={"gg:remove"} />
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  push({
+                                    name: "",
+                                    price: "",
+                                    available: "",
+                                  })
+                                }
+                                className="text-white p-2 w-full bg-appDarkText flex justify-center gap-2 items-center rounded-md mt-2 text-sm"
+                              >
+                                New Ticket Type
+                                <Icon icon={"gg:add"} />
+                              </button>
+                            </>
+                          )}
+                        </FieldArray>
+                      </div>
+                    )}
                   </motion.div>
                 )}
 
@@ -798,12 +814,16 @@ const NewEvent = () => {
                                   <span className="text-gray-600">
                                     &#127903;
                                   </span>
-                                  <p>
-                                    {ticket.name || "Type"}:{" "}
-                                    {ticket.price
-                                      ? `${ticket.price}/ticket`
-                                      : "Price/ticket"}
-                                  </p>
+                                  {values.ticketing.entryType == "free" ? (
+                                    <p>Free</p>
+                                  ) : (
+                                    <p>
+                                      {ticket.name || "Type"}:{" "}
+                                      {ticket.price
+                                        ? `${ticket.price}/ticket`
+                                        : "Price/ticket"}
+                                    </p>
+                                  )}
                                 </div>
                               </div>
                             ))

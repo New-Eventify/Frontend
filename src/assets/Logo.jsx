@@ -6,11 +6,10 @@ const Logo = () => {
     <Link to={"/"} className="flex items-center gap-2">
       <Icon
         color="white"
-        className="mb-2"
-        fontSize={24}
+        className="mb-2 sm:text-2xl"
         icon={"dashicons:tickets-alt"}
       />
-      <h1 className="text-appYellow text-3xl">Evenza</h1>
+      <h1 className="text-appYellow text-xl sm:text-3xl">Evenza</h1>
     </Link>
   );
 };
