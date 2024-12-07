@@ -2,7 +2,13 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Icon } from "@iconify/react";
 
-const Dropdown = ({ icon, placeholder, options, onChange, className = "" }) => {
+const Dropdown = ({
+  icon = "",
+  placeholder = "",
+  options = [],
+  onChange,
+  className = "",
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(placeholder);
 
@@ -52,11 +58,7 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
-  className: PropTypes.string, // Optional
-};
-
-Dropdown.defaultProps = {
-  className: "", // Default empty className
+  className: PropTypes.string,
 };
 
 export default Dropdown;

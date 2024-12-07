@@ -6,6 +6,8 @@ import { setUser, resetUser, selectToken } from "../redux/reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { setIsSignUp } from "../redux/reducers/authViewSlice";
+import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
@@ -52,22 +54,54 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = async () => {
+  const logout = (message) => {
     // Clear Redux state
     try {
-      await axiosInstance.post("/users/signout", token);
       dispatch(resetUser());
+      toast.success(message);
       navigate("/auth");
     } catch (error) {
-      console.error(
-        "Unable to sign out:",
-        error.response?.data || error.message
-      );
+      console.error("Unable to sign out:", message || error.message);
+      toast.error(message || error.message);
+    }
+  };
+
+  axiosInstance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        logout("Session Expired. Log in again");
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  const isTokenExpired = () => {
+    try {
+      const decoded = jwtDecode(token);
+      const currentTime = Math.floor(Date.now() / 1000);
+      return decoded.exp < currentTime;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return true;
+    }
+  };
+
+  const startTokenExpirationCheck = () => {
+    if (token) {
+      const checkInterval = setInterval(() => {
+        if (isTokenExpired(token)) {
+          clearInterval(checkInterval); // Stop further checks
+          logout();
+        }
+      }, 60000); // Check every minute
     }
   };
 
   return (
-    <AuthContext.Provider value={{ login, signup, logout }}>
+    <AuthContext.Provider
+      value={{ login, signup, logout, startTokenExpirationCheck }}
+    >
       {children}
     </AuthContext.Provider>
   );

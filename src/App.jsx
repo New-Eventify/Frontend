@@ -6,8 +6,11 @@ import NewEvent from "./pages/NewEvent";
 import ProtectedRoutes from "./protected-routes/ProtectedRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "./context/AuthContext";
 
 const App = () => {
+  const { startTokenExpirationCheck } = useAuth();
+  startTokenExpirationCheck();
   return (
     <>
       <ToastContainer
