@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_DEV_API_BASE_URL,
 });
 axiosInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
