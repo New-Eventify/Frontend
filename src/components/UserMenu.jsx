@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import { useDispatch } from "react-redux";
 import { setMenu } from "../redux/reducers/userMenuSlice";
-import { toast } from "react-toastify";
 
 const UserMenu = () => {
   const { logout } = useAuth();
@@ -30,7 +29,6 @@ const UserMenu = () => {
         <li
           onClick={() => {
             logout();
-            toast.success("See you later");
             dispatch(setMenu(false));
           }}
           className="hover:bg-gray-300 sm:py-2 p-2 sm:px-4 cursor-pointer"
